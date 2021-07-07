@@ -1,0 +1,21 @@
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    height: 100%;
+    padding: 0rem;
+    margin: 0rem;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: $partyu-font-overlock;
+    font-weight: $partyu-font-regultar;
+    background-color: $partyu-gray-white;
+    height: 100%;
+}
