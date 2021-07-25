@@ -1,0 +1,49 @@
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3.5rem;
+
+    &__image {
+        vertical-align: top;
+        width: 3.4rem;
+    }
+
+    &__text {
+        color: $partyu-purple;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-22;
+        margin-left: 1rem;
+    }
+}
+
+.auth {
+    &__sentence {
+        color: $gray;
+        margin-bottom: 3rem;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: center;
+        & a{
+            color: $partyu-purple;
+            font-size: $font-size-16;
+            font-weight: $font-weight-black;
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+        &-data {
+            @include justify-center-row();
+            @extend .auth__footer;
+        }
+
+        &--login {
+            @include align-center-column();
+            @extend .auth__footer;
+            & > a {
+                margin-top: -2rem !important;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,62 @@
+<header>
+    <div class="header__left">
+        <span class="header__title">Events</span>
+    </div>
+
+    <!-- Searching Bar -->
+    <div class="header__middle">
+        <div class="form__group form__group--search-bar">
+            <input type="text" 
+                   class="form__input" 
+                   placeholder="Looking for something?">
+            <i class="pi pi-search cursor-pointer"></i>
+        </div>
+    </div>
+    <!-- Searching Bar -->
+
+    <div class="header__right">
+        <div class="header__user-info cursor-pointer" (click)="op.toggle($event)">
+            <span class="header__user-name">Daniel Aranda Martrín</span>
+            <div class="header__user-profile ml-15">
+                D
+            </div>
+            <i class="pi pi-angle-down ml-15"></i>
+        </div>
+        <i class="pi pi-bell ml-25"></i>
+    </div>
+</header>
+
+<!-- Dropdown -->
+<p-overlayPanel #op class="p-overlaypanel--header">
+    <ng-template pTemplate>
+        <div class="p-overlaypanel__options">
+            <a class="mb-10 cursor-pointer">Profile</a>
+            <a class="mb-10 cursor-pointer">Support</a>
+            <a class="cursor-pointer mt-12 d-flex items-center logout-option" (click)="showModalDialog()">
+                <i class="pi pi-sign-out mr-4"></i>
+                Log out
+            </a>
+        </div>
+    </ng-template>
+</p-overlayPanel>
+<!-- Dropdown -->
+
+<!-- Dialog for log out confirmation -->
+<p-dialog class="dialog--small"
+          header="Log out" 
+          [(visible)]="displayModal" 
+          [modal]="true" 
+          [style]="{width: '36.5rem'}"
+          [baseZIndex]="10000"
+          [draggable]="false">
+
+    <p class="p-dialog__sentence p-dialog__sentence--paragraph">
+        Are you sure you want to leave the platform? When you log out, your session will be closed and you will be redirected to the login screen.
+    </p>
+
+    <div class="p-dialog__btns">
+        <button class="btn--clear btn--small" (click)="displayModal=false">Close</button>
+        <button type="submit" class="btn btn--small" (click)="logout()">Log Out</button>
+    </div>
+
+</p-dialog>

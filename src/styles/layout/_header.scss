@@ -1,0 +1,40 @@
+
+header {
+    height: 5.6rem;
+    line-height: 5.6rem;
+    background-color: $white;
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 6rem;
+    width: 100%;    
+}
+
+.header {
+    &__right, &__middle {
+        display: flex;
+        align-items: center;
+        .pi-bell {
+            font-size: $font-size-16;
+        }
+    }
+    &__user-profile {
+        border-radius: 100%;
+        height: 4rem;
+        width: 4rem;
+        background-color: $partyu-purple;
+        color: $white;
+        text-align: center;
+        font-weight: $font-weight-black;
+        font-size: $font-size-16;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__user-info {
+        display: flex;
+        align-items: center;
+        i {
+            font-size: $font-size-16;
+        }
+    }
+}

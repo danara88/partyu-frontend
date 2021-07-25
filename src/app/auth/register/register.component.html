@@ -1,0 +1,71 @@
+<h1>Sign up.</h1>
+
+<p class="auth__sentence">
+    Sign up to the platform to start searching for parties
+    and events
+</p>
+
+<form class="form"
+      [formGroup]="registerForm"
+      (ngSubmit)="onSubmit()">
+
+    <div class="form__group" [class.form__group--error]="notValidField('fullname')">
+        <div class="form__group--head">
+            <label class="form__label">Full name</label>
+            <span class="form__message-error" *ngIf="notValidField('fullname')">* The full name is not valid</span>
+        </div>
+      
+        <input type="text" 
+               class="form__input" 
+               placeholder="John Doe"
+               formControlName="fullname">
+    </div>
+
+    <div class="form__group" [class.form__group--error]="notValidField('email') || messageError.length !== 0 ">
+        <div class="form__group--head">
+            <label class="form__label">Email Address</label>
+            <span class="form__message-error" *ngIf="notValidField('email') && messageError.length === 0">* The email is not valid</span>
+            <span class="form__message-error" *ngIf="messageError.length !== 0">{{ messageError }}</span>
+        </div>
+        <input type="text" 
+               class="form__input" 
+               placeholder="John@domain.com"
+               formControlName="email">
+    </div>
+
+    <div class="form__group" [class.form__group--error]="notValidField('password')">
+        <div class="form__group--head">
+            <label class="form__label">Password</label>
+            <span class="form__message-error" *ngIf="notValidField('password')">* The password is not valid</span>
+        </div>
+        <input type="password" 
+               class="form__input" 
+               placeholder="at least 8 characters and one capital letter"
+               formControlName="password">
+    </div>
+
+    <div class="form__group" [class.form__group--error]="notValidField('repeatPassword')">
+        <div class="form__group--head">
+            <label class="form__label">Repeat Password</label>
+            <span class="form__message-error" *ngIf="notValidField('repeatPassword')">* The password doesn't match</span>
+        </div>
+        <input type="password" 
+               class="form__input" 
+               placeholder="repeat your password"
+               formControlName="repeatPassword">
+    </div>
+
+    <div class="form__group form__group--button">
+        <button type="submit" class="btn btn--big mt-10">
+            Sign up
+        </button>
+    </div>
+
+</form>
+
+<div class="auth__footer">
+    <p class="auth__sentence">Have an account?</p>
+    <a routerLink="/auth/login">Sign in.</a>
+</div>
+
+

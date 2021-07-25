@@ -1,0 +1,22 @@
+/**
+* Toast Notifications for global application
+*/
+.p-toast {
+    width: 32rem !important;
+
+    .p-toast-message {
+
+        .p-toast-message-content {
+            .p-toast-summary {
+                font-size: $font-size-14;
+            }
+
+            .p-toast-detail {
+                font-size: $font-size-12;
+            }
+
+        }
+
+    }
+
+}

@@ -1,0 +1,35 @@
+/**
+* Dialog styles for global application
+*/
+
+.p-dialog {
+    .p-dialog-header {
+        .p-dialog-title {
+            font-family: $font-family-overlock !important;
+            font-size: $font-size-18 !important;
+            font-weight: $font-weight-bold !important;
+        }
+    }
+
+    .p-dialog-content {
+        border-radius: 0rem 0rem 0.3rem 0.3rem !important;
+    }
+
+    &__sentence {
+        font-family: $font-family-overlock;
+        font-size: $font-size-18;
+        margin-bottom: 2rem;
+        &--paragraph {
+            line-height: 2.8rem;
+        }
+    }
+
+    &__btns {
+        @include align-items-row();
+        float: right;
+        margin-top: 2rem;
+        & button {
+            margin-left: .8rem;
+        }
+    }
+}

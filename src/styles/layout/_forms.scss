@@ -1,0 +1,65 @@
+.form {
+    display: flex;
+    flex-direction: column;
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.5rem;
+
+        &--head {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &--button {
+            margin-top: 2rem;
+        }
+
+        &--search-bar {
+            margin-bottom: 0rem;
+            width: 41.3rem;
+            flex-direction: row !important;
+            position: relative;
+            input {
+                width: 100%;
+                padding-right: 3rem;
+            }
+            i {
+               position: absolute;
+               right: 1rem;
+               top: .8rem;
+               font-size: $font-size-16;
+               color: $gray;
+            }
+        }
+
+        &--error {
+            & label {
+                color: $red;
+            }
+            & input {
+                border-color: $red;
+                color: $red;
+            }
+        }
+    }
+
+    &__label {
+        margin-bottom: .8rem;
+        color: $gray;
+    }
+
+    &__message-error {
+        @extend .feedback;
+        color: $red;
+    }
+
+    &__input {
+        padding: .6rem .9rem;
+        font-size: $font-size-16;
+        outline: none;
+        border: .1rem solid $gray-soft;
+        border-radius: .3rem;
+    }
+}

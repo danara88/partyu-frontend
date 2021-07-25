@@ -1,0 +1,53 @@
+<h1>Log in !</h1>
+
+<p class="auth__sentence">Sign in into the platform to start searching for parties
+    and events near to you
+</p>
+
+<form class="form"
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()">
+
+    <div class="form__group" [class.form__group--error]="loginFail">
+        <div class="form__group--head">
+            <label class="form__label">Email Address</label>
+            <span class="form__message-error" *ngIf="loginFail">* The email or password is incorrect</span>
+        </div>
+        <input type="text" 
+               class="form__input" 
+               placeholder="Enter Your Email"
+               formControlName="email">
+    </div>
+
+    <div class="form__group">
+        <div class="form__group--head">
+            <label class="form__label">Password</label>
+        </div>
+        <input type="password" 
+               class="form__input" 
+               placeholder="Enter Your Password"
+               formControlName="password">
+    </div>
+
+    <div class="form__group form__group--button">
+        <button type="submit" class="btn btn--big mt-10">
+            Sign in
+        </button>
+    </div>
+
+</form>
+
+<div class="auth__footer--login">
+    <div class="auth__footer-data">
+        <p class="auth__sentence">Don't have an account?</p>
+        <a routerLink="/auth/register">Sign up.</a>
+    </div>
+
+    <app-forgot-password></app-forgot-password>
+    
+</div>
+
+
+<p-toast key="recoverPasswordSuccess"></p-toast>
+
+

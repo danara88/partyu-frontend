@@ -1,0 +1,30 @@
+h1 {
+    font-size: $font-size-32;
+}
+
+h2 {
+    font-size: $font-size-30;
+}
+
+h3 {
+    font-size: $font-size-26;
+}
+
+label {
+    font-weight: $font-weight-bold;
+    font-size: $font-size-16;
+}
+
+p {
+    font-size: $font-size-16;
+    font-weight: $font-weight-regular;
+}
+
+.feedback {
+    font-size: $font-size-12;
+}
+
+.title {
+    font-size: $font-size-18;
+    font-weight: $font-weight-bold;
+}

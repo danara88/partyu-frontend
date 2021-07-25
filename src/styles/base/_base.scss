@@ -1,3 +1,6 @@
+/*
+ * Here are all the basic rules for starting the project
+ */
 html {
     box-sizing: border-box;
     font-size: 62.5%;
@@ -14,8 +17,22 @@ html {
 
 body {
     font-size: 1.6rem;
-    font-family: $partyu-font-overlock;
-    font-weight: $partyu-font-regultar;
-    background-color: $partyu-gray-white;
+    font-family: $font-family-overlock;
+    font-weight: $font-weight-regular;
+    background-color: $gray-white;
     height: 100%;
 }
+
+.p-grid {
+    &--hideen {
+        overflow: hidden;
+    }
+}
+
+.white-box {
+    background-color: #fff;
+    padding: 1.5rem 1rem;
+    border-radius: .8rem;
+}
+
+

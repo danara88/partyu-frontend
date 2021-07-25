@@ -1,0 +1,26 @@
+/**
+ * Reste Styles for notifications in home page
+ */
+
+ .notification {
+    .p-message.p-message-success {
+        background-color: white;
+    }
+    &__title {
+        font-weight: $font-weight-bold;
+        font-size: $font-size-14;
+        color: $black;
+        margin-bottom: .5rem;
+    }
+    &__event-link {
+        color: $partyu-purple;
+        font-size: $font-size-12;
+        font-weight: $font-weight-regular;
+        cursor: pointer;
+    }
+    &__time {
+        color: $gray;
+        font-size: $font-size-12;
+        margin-top: .5rem;
+    }
+ }

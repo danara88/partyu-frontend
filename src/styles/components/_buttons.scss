@@ -1,0 +1,65 @@
+/**
+* Buttons styles for global application
+*/
+
+.btn {
+    background-color: $partyu-purple !important;
+    color: $white;
+    border: none;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: all 300ms;
+
+    &:not(button[type="submit"][disabled]):hover {
+        background-color: #6f48d6;
+    }
+
+    &.btn {
+
+        &--big {
+            height: 4.5rem;
+            line-height: 4.5rem;
+            padding: 0rem 2rem;
+            @extend label;
+        }
+
+        &--small {
+            height: 3rem;
+            line-height: 3rem;
+            font-size: $font-size-14;
+            padding: 0rem 1.5rem;
+
+            .pi {
+                font-size: $font-size-16
+            }
+        }
+
+        &--icon-only {
+            @extend .btn--small;
+            width: 3rem !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    }
+
+    &--clear {
+        @extend .btn;
+        background-color: #fff !important;
+        color: $partyu-purple-soft;
+        border: 1px solid $partyu-purple-soft;
+       
+
+        &:not(button[type="submit"][disabled]):hover {
+            background-color: #fff;
+        }
+
+    }
+    
+}
+
+button[disabled] {
+    opacity: 0.5;
+    cursor: unset;
+}

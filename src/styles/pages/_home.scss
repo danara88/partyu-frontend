@@ -1,0 +1,54 @@
+
+.events-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 74.8rem;
+    margin: 0 auto !important; 
+}
+
+.event {
+    width: 35.4rem;
+    margin: 1rem;
+    &__image {
+        width: 7rem;
+        & > img {
+            vertical-align: top;
+        }
+    }
+    &__title {
+        @extend label;
+    }
+    &__date {
+        color: #858585;
+        font-size: $font-size-14;
+    }
+    &__content {
+        margin-left: 1rem;
+
+        &-footer {
+            margin-top: 2rem;
+        }
+    }
+    &__people {
+        .pi-users {
+            font-size: $font-size-16;
+            margin-right: .7rem;
+        }
+    }
+    
+}
+
+/**
+* Notifications Area
+*/
+.notifications {
+    &__title {
+        @extend label;
+        color: $gray;
+    }
+    &__footer {
+        font-size: $font-size-12;
+        color: #A8A8A8;
+        text-align: center;
+    }
+}
