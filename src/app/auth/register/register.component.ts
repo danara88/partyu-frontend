@@ -82,6 +82,7 @@ export class RegisterComponent implements OnInit {
       this.spinner.hide();
       localStorage.setItem('access_token', resp.token);
       this.router.navigateByUrl('/pages/home');
+      this.router.navigate([`/pages/home`], { state: { RegisterSuccess: true, fullname: this.user.fullname } });
 
     }, error => {
       let errorsObj = error.error;

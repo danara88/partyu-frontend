@@ -1,0 +1,58 @@
+<a class="mb-10 cursor-pointer" (click)="showModalDialog()">Profile</a>
+
+<p-dialog class="dialog--small"
+          header="My Profile" 
+          [(visible)]="displayModal" 
+          [modal]="true" 
+          [style]="{width: '44rem'}"
+          appendTo="body"
+          [baseZIndex]="10000"
+          [draggable]="false">
+
+    <div class="profile">
+
+        <div class="profile__header d-flex justify-center">
+            <div class="header__user-profile profile__user-profile">
+               {{ firstLetter }}
+            </div>
+        </div>
+
+        <div class="profile__content d-flex justify-between mt-25">
+            <div class="profile__content-left">
+                <div class="profile__group d-flex flex-column">
+                    <label class="mb-5">Name</label>
+                    <p-skeleton width="10rem" styleClass="p-mb-2" *ngIf="loader"></p-skeleton>
+                    <span>{{ user.fullname }}</span>
+                </div>
+                <div class="profile__group d-flex flex-column mt-15">
+                    <label class="mb-5">Account</label>
+                    <p-skeleton width="10rem" styleClass="p-mb-2" *ngIf="loader"></p-skeleton>
+                    <span *ngIf="user.role === 'ROLE_USER'">User Account</span>
+                    <span *ngIf="user.role === 'ROLE_ADMIN'">Admin Account</span>
+                </div>
+                <div class="profile__group d-flex flex-column mt-15">
+                    <label class="mb-5">Account Status</label>
+                    <p-skeleton width="10rem" styleClass="p-mb-2" *ngIf="loader"></p-skeleton>
+                    <span *ngIf="user.status">Active</span>
+                    <span *ngIf="!user.status">Inactive</span>
+                </div>
+            </div>
+            <div class="profile__content-right">
+                <div class="profile__group d-flex flex-column">
+                    <label class="mb-5">Email</label>
+                    <p-skeleton width="10rem" styleClass="p-mb-2" *ngIf="loader"></p-skeleton>
+                    <span>{{ user.email }}</span>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="p-dialog__btns">
+        <app-forgot-password [isForgotPasswordProfile]="true"></app-forgot-password>
+        <button class="btn--clear btn--small" (click)="displayModal=false">Close</button>
+    </div>
+
+</p-dialog>
+
+<p-toast key="profileToast"></p-toast>

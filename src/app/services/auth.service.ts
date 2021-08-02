@@ -35,7 +35,11 @@ export class AuthService {
     return this.http.post<{message: string}>(`${ this.apiUrl }api/users/recovery-password`, { email });
   }
   
-
+  /**
+   * Change the user password
+   * @param user 
+   * @returns 
+   */
   changePassword(user: any): Observable<User> {
     return this.http.post<User>(`${ this.apiUrl }api/users/change-password`, user);
   }

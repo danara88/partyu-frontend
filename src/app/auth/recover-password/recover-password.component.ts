@@ -5,6 +5,8 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { SECRET_KEY } from '../../../environments/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { MessageService } from 'primeng/api';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-recover-password',
@@ -15,47 +17,40 @@ export class RecoverPasswordComponent implements OnInit {
 
   public recoverPasswordForm: FormGroup = new FormGroup({});
   public email: string;
-  public expiresIn: string;
+  public expiresIn: number;
 
   constructor(
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private authService: AuthService,
+    private utilsService: UtilsService,
     private spinner: NgxSpinnerService,
     private router: Router,
+    private messageService: MessageService,
   ) {
     this.email = '';
-    this.expiresIn = '';
+    this.expiresIn = 0;
   }
 
   ngOnInit(): void {
-    // this.validateURL();
+    this.validateURL();
     this.createForm();
   }
 
   validateURL() {
     this.route.queryParams.subscribe(params => {
-      let encryptedEmail = params.email;
-      let encryptedExpiresIn = params.expiresIn;
 
-      this.email = encryptedEmail;
-      this.expiresIn = encryptedExpiresIn;
+      this.email = params.email;
+      this.expiresIn = Number(params.expiresIn);
 
-      console.log(this.expiresIn);
+      let actualDate = new Date().getTime();
+
+      if (actualDate >= this.expiresIn ) {
+        // Expired URL
+        this.router.navigate([`/auth/login`], { state: { recoverPasswordExpired: true } });
+      }
       
     });
-  }
-
-    /**
-   * function to decrypt URL parameters
-   * @param key 
-   * @param ciphertextB64 
-   */
-  decryptData(key: string, ciphertextB64: string) {                     // Base64 encoded ciphertext, 32 bytes string as key
-      let k = CryptoJS.enc.Utf8.parse(key);                               // Convert into WordArray (using Utf8)
-      let iv = CryptoJS.lib.WordArray.create([0x00, 0x00, 0x00, 0x00]);   // Use zero vector as IV
-      let decrypted = CryptoJS.AES.decrypt(ciphertextB64, k, { iv: iv }); // By default: CBC, PKCS7 
-      return decrypted.toString(CryptoJS.enc.Utf8);                       // Convert into string (using Utf8)
   }
 
   /**
@@ -105,6 +100,10 @@ export class RecoverPasswordComponent implements OnInit {
     }
   }
 
+  /**
+   * Submit the form to reset password
+   * @returns 
+   */
   onSubmit() {
     if (this.recoverPasswordForm.invalid) return;
 
@@ -117,20 +116,20 @@ export class RecoverPasswordComponent implements OnInit {
       expiresIn: this.expiresIn
     }
 
-    setInterval(() => {
-      this.spinner.hide();
+    //Service to change password API 
+    this.authService.changePassword(bodyObj).subscribe(user => {
       this.router.navigate([`/auth/login`], { state: { recoverPasswordSuccess: true } });
-    }, 3000);
+      this.spinner.hide();
 
-    // Service to change password API
-    // this.authService.changePassword(bodyObj).subscribe(user => {
-    //   console.log(user);
+    }, error => {
+      console.log(error);
+      this.spinner.hide();
+      this.recoverPasswordForm.reset();
+      this.utilsService.showToastMessage('recoverPasswordError', 'error', 'Recover Password', error.error.message, this.messageService);
 
-    // }, error => {
-    //   console.log(error);
-
-    // });
+    });
 
   }
+
 
 }

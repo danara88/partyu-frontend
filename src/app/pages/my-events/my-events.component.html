@@ -1,8 +1,12 @@
 
 <div class="p-grid home-container">
+
     
     <!-- Events -->
     <div class="p-col">
+
+        <p class="auth__sentence mt-20">Here you will find all the events that you confirm your participation
+        </p>
 
         <div class="events mt-15" *ngIf="!loader">
             <!-- Event Card -->
@@ -21,14 +25,8 @@
                             219
                         </span>
 
-                        <button class="btn--clear btn--icon-only" 
-                               (click)="attendToEvent(event)"
-                               *ngIf="!myParticipationsIDs.includes(event._id!)">
-                                <i class="pi pi-check"></i>
-                        </button>
                         <button class="btn btn--icon-only" 
-                                (click)="notAttendToEvent(event)"
-                               *ngIf="myParticipationsIDs.includes(event._id!)">
+                                (click)="notAttendToEvent(event)">
                                  <i class="pi pi-check"></i>
                         </button>
 
@@ -37,17 +35,18 @@
 
             </div>
             <!-- Event Card -->
+
+            <!-- Empty Message -->
+            <div class="empty-message d-flex items-center flex-column" *ngIf="!events.length && !loader">
+                <div class="empty-message__image">
+                    <img src="../../../assets/images/empty_icon.svg" alt="Empty PartyU">
+                </div>
+                <span class="empty-message__text">You have not participated in any event</span>
+            </div>
+            <!-- Empty Message -->
+
         </div>
         
-        <!-- Empty Message -->
-        <div class="empty-message d-flex items-center flex-column" *ngIf="!events.length && !loader">
-            <div class="empty-message__image">
-                <img src="../../../assets/images/empty_icon.svg" alt="Empty PartyU">
-            </div>
-            <span class="empty-message__text">Not events to show</span>
-        </div>
-        <!-- Empty Message -->
-
         <!-- Sekeleton -->
         <div class="events mt-15" *ngIf="loader">
 
@@ -150,3 +149,4 @@
 <p-toast key="RegisterSuccess"></p-toast>
 <p-toast key="homeToast"></p-toast>
 <!-- Alerts Messages -->
+

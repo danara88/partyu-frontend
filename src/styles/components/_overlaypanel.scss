@@ -25,11 +25,11 @@
         &__options {
             display: flex;
             flex-direction: column;
-            & > a {
+            & a {
                 font-family: $font-family-overlock;
                 font-size: $font-size-16;
             }
-            & > a.logout-option {
+            & a.logout-option {
                 i {
                     font-size: $font-size-14;
                 }

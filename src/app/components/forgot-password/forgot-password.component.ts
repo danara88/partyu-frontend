@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -10,16 +11,19 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ForgotPasswordComponent implements OnInit {
 
+  @Input() public isForgotPasswordProfile: boolean;
   public displayModal: boolean;
   public formForgotPassword: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private utilsService: UtilsService,
     private messageService: MessageService
   ) { 
     this.displayModal = false;
     this.formForgotPassword = new FormGroup({});
+    this.isForgotPasswordProfile = false;
   }
 
   ngOnInit(): void {
@@ -38,28 +42,14 @@ export class ForgotPasswordComponent implements OnInit {
    */
   createForm() {
     this.formForgotPassword = this.fb.group({
-      email   : ['danielarandamar88@gmail.com',  [Validators.required, Validators.pattern("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")]]
+      email   : ['',  [Validators.required, Validators.pattern("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")]]
     });
   }
 
   /**
-   * Show Toast Notification Message
-   * @param key 
-   * @param severity 
-   * @param summary 
-   * @param detail 
+   * Sends the recover password to the email
+   * @returns 
    */
-  showToastMessage(key: string, severity: string, summary: string, detail: string) {
-    this.messageService.add({
-      key: key, 
-      severity: severity, 
-      summary: summary, 
-      detail: detail,
-      life: 3000,
-      closable: false
-    });
-  }
-
   onSubmit() {
 
     if (this.formForgotPassword.invalid) return;
@@ -69,12 +59,12 @@ export class ForgotPasswordComponent implements OnInit {
     let email = this.formForgotPassword.controls.email.value;
 
     this.authService.recoverPassword(email).subscribe(resp => {
-      this.showToastMessage('forgotPassword', 'success', 'Recover Password', resp.message);
+      this.utilsService.showToastMessage('forgotPassword', 'success', 'Recover Password', resp.message, this.messageService);
       this.formForgotPassword.reset();
 
     }, error => {
       console.log(error);
-      this.showToastMessage('forgotPassword', 'error', 'Recover Password', 'Something went wrong ...');
+      this.utilsService.showToastMessage('forgotPassword', 'error', 'Recover Password', 'Something went wrong ...', this.messageService);
       this.formForgotPassword.reset();
     });
 

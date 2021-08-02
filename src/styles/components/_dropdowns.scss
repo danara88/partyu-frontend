@@ -1,0 +1,18 @@
+.p-dropdown {
+    width: 100%;
+    padding: .6rem .9rem;
+    outline: none;
+
+    &.form_input.ng-tns-c70-3.ng-untouched.ng-pristine.ng-valid.ng-star-inserted {
+        width: 100%;
+    }
+
+    .p-dropdown-label.p-placeholder {
+        font-size: $font-size-16;
+    }
+
+    .p-dropdown-items, .p-dropdown-label {
+        font-size: $font-size-16;
+    }
+
+}

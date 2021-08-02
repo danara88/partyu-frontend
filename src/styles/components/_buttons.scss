@@ -25,7 +25,7 @@
 
         &--small {
             height: 3rem;
-            line-height: 3rem;
+            line-height: 2rem;
             font-size: $font-size-14;
             padding: 0rem 1.5rem;
 
@@ -36,6 +36,7 @@
 
         &--icon-only {
             @extend .btn--small;
+            line-height: 3rem !important;
             width: 3rem !important;
             display: flex;
             justify-content: center;

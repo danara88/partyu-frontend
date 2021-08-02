@@ -25,10 +25,15 @@ header {
         color: $white;
         text-align: center;
         font-weight: $font-weight-black;
-        font-size: $font-size-16;
+        font-size: $font-size-18;
         display: flex;
         justify-content: center;
         align-items: center;
+        &.profile__user-profile {
+            height: 6rem;
+            width: 6rem;
+            font-weight: $font-weight-bold;
+        }
     }
     &__user-info {
         display: flex;

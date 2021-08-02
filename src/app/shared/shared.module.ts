@@ -9,8 +9,13 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { SkeletonModule } from 'primeng/skeleton';
+import { TooltipModule } from 'primeng/tooltip';
+import { DropdownModule } from 'primeng/dropdown';
+import {CheckboxModule} from 'primeng/checkbox';
+
 
 
 @NgModule({
@@ -24,7 +29,11 @@ import {MessageModule} from 'primeng/message';
     ToastModule,
     OverlayPanelModule,
     MessageModule,
-    MessagesModule
+    MessagesModule,
+    SkeletonModule,
+    TooltipModule,
+    DropdownModule,
+    CheckboxModule
   ],
   exports: [
     NgxSpinnerModule,
@@ -32,7 +41,11 @@ import {MessageModule} from 'primeng/message';
     ToastModule,
     OverlayPanelModule,
     MessageModule,
-    MessagesModule
+    MessagesModule,
+    SkeletonModule,
+    TooltipModule,
+    DropdownModule,
+    CheckboxModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

@@ -7,13 +7,15 @@ import { ComponentsModule } from '../components/components.module';
 
 import { PagesComponent } from './pages.component';
 import { HomeComponent } from './home/home.component';
+import { MyEventsComponent } from './my-events/my-events.component';
 
 
 
 @NgModule({
   declarations: [
     PagesComponent,
-    HomeComponent
+    HomeComponent,
+    MyEventsComponent
   ],
   imports: [
     CommonModule,

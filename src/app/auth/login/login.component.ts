@@ -5,6 +5,7 @@ import { User } from '../../models/user.model';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../../services/auth.service';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private router: Router,
     private authService: AuthService,
+    private utilsService: UtilsService,
     private messageService: MessageService
   ) {
 
@@ -36,7 +38,13 @@ export class LoginComponent implements OnInit {
    
     if (history.state.recoverPasswordSuccess === true) {
       setTimeout(() => {
-        this.showToastMessage('recoverPasswordSuccess', 'success', 'Recover Password', 'Your password was reseted successfully');
+        this.utilsService.showToastMessage('recoverPasswordSuccess', 'success', 'Recover Password', 'Your password was reseted successfully', this.messageService);
+      }, 500);
+    }
+
+    if (history.state.recoverPasswordExpired === true) {
+      setTimeout(() => {
+        this.utilsService.showToastMessage('recoverPasswordSuccess', 'error', 'Recover Password', 'The URL has expired.', this.messageService);
       }, 500);
     }
   }
@@ -51,24 +59,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  /**
-   * Show Toast Notification Message
-   * @param key 
-   * @param severity 
-   * @param summary 
-   * @param detail 
-   */
-    showToastMessage(key: string, severity: string, summary: string, detail: string) {
-      this.messageService.add({
-        key: key, 
-        severity: severity, 
-        summary: summary, 
-        detail: detail,
-        life: 4000,
-        closable: false
-      });
-    }
-  
   /**
    * Submit the form for user authentication
    */

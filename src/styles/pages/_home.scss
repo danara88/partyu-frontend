@@ -1,13 +1,17 @@
 
-.events-container {
+.home-container {
+    width: 105rem !important;
+    margin: 0 auto !important;
+}
+
+.events {
     display: flex;
     flex-wrap: wrap;
-    width: 74.8rem;
-    margin: 0 auto !important; 
+    width: 72.1rem;
 }
 
 .event {
-    width: 35.4rem;
+    width: 34rem;
     margin: 1rem;
     &__image {
         width: 7rem;
@@ -42,6 +46,10 @@
 * Notifications Area
 */
 .notifications {
+
+    &-container{
+        width: 100%;
+    }
     &__title {
         @extend label;
         color: $gray;

@@ -5,22 +5,29 @@
  .notification {
     .p-message.p-message-success {
         background-color: white;
+        border-width: 0 0 0 .3rem;
+    }
+    .p-message .p-message-wrapper {
+        padding: 1.7rem 0rem;
+        padding-left: 1rem !important;
     }
     &__title {
-        font-weight: $font-weight-bold;
-        font-size: $font-size-14;
+        font-size: $font-size-16;
         color: $black;
         margin-bottom: .5rem;
     }
     &__event-link {
         color: $partyu-purple;
         font-size: $font-size-12;
-        font-weight: $font-weight-regular;
+        font-weight: $font-weight-bold;
         cursor: pointer;
     }
     &__time {
         color: $gray;
         font-size: $font-size-12;
         margin-top: .5rem;
+    }
+    &__buttons {
+        margin-left: .8rem;
     }
  }
