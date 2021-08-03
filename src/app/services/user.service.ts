@@ -36,6 +36,14 @@ export class UserService {
     return this.http.get<UserProfile>(`${ this.apiUrl }api/users/profile`);
   }
 
+  /**
+   * Get all users
+   * @returns 
+   */
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${ this.apiUrl }api/users`);
+  }
+
 
 
 }

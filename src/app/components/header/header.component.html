@@ -32,9 +32,7 @@
         <div class="p-overlaypanel__options">
             <app-profile class="mb-10"></app-profile>
             <a class="mb-10 cursor-pointer">Support</a>
-            <a class="mb-10 cursor-pointer" 
-               (click)="showModalDialogCreateEvent()" 
-               *ngIf="user.role === 'ROLE_ADMIN'">Create Event</a>
+            <app-create-event [headerOverlaypanel]="op"></app-create-event>
             <a class="cursor-pointer mt-12 d-flex items-center logout-option" (click)="showModalDialog()">
                 <i class="pi pi-sign-out mr-4"></i>
                 Log out
@@ -44,10 +42,11 @@
 </p-overlayPanel>
 <!-- Dropdown -->
 
+
 <!-- Dialog for log out confirmation -->
 <p-dialog class="dialog--small"
           header="Log out" 
-          [(visible)]="displayModal" 
+          [(visible)]="displayModalLogout" 
           [modal]="true" 
           [style]="{width: '36.5rem'}"
           [baseZIndex]="10000"
@@ -58,7 +57,7 @@
     </p>
 
     <div class="p-dialog__btns">
-        <button class="btn--clear btn--small" (click)="displayModal=false">Close</button>
+        <button class="btn--clear btn--small" (click)="displayModalLogout=false">Close</button>
         <button type="submit" class="btn btn--small" (click)="logout()">Log Out</button>
     </div>
 
@@ -66,77 +65,6 @@
 <!-- Dialog for log out confirmation -->
 
 
-
-<!-- Dialog to create event-->
-<p-dialog class="dialog--small"
-          header="Create Event" 
-          [(visible)]="displayModalCreateEvent" 
-          [modal]="true" 
-          [style]="{width: '45rem'}"
-          [baseZIndex]="10000"
-          [draggable]="false">
-
-    <form [formGroup]="eventForm" (ngSubmit)="onSubmit(op)">
-
-        <div class="form__group">
-            <div class="form__group--head">
-                <label class="form__label">Title</label>
-            </div>
-            <input type="text" 
-                class="form__input" 
-                placeholder="at least 8 characters"
-                formControlName="title">
-        </div>
-
-        <div class="form__group">
-            <div class="form__group--head">
-                <label class="form__label">Region</label>
-            </div>
-            <p-dropdown class="form_input"
-                        [options]="regions"
-                        placeholder="Select a Region" 
-                        dataKey="_id"
-                        optionLabel="city"
-                        formControlName="region"
-                        [showClear]="false">
-            </p-dropdown>
-        </div>
-
-        <div class="form__group">
-            <div class="form__group--head">
-                <label class="form__label">Description</label>
-            </div>
-            <textarea type="text" 
-                      rows="5"
-                      class="form__input" 
-                      placeholder="add some detail to the event"
-                      formControlName="description">
-            </textarea>
-        </div>
-
-        <div class="form__group">
-           
-            <div class="p-field-checkbox">
-                <p-checkbox inputId="binary" 
-                            class="form__input-checkbox"
-                            [binary]="true"
-                            formControlName="visibility">
-                </p-checkbox>
-                <label for="binary" class="form__input-checkbox-label">Make private this event</label>
-            </div>
-            
-        </div>
-      
-
-        <div class="p-dialog__btns">
-            <button class="btn--clear btn--small" (click)="displayModalCreateEvent=false">Close</button>
-            <button type="submit" class="btn btn--small" [disabled]="eventForm.invalid">Create</button>
-        </div>
-
-    </form>
-
-</p-dialog>
-<!-- Dialog to create event-->
 
 
 <p-toast key="headerToastMessage"></p-toast>

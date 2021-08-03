@@ -1,0 +1,28 @@
+.p-autocomplete {
+    &-input-token {
+        padding: .6rem .9rem !important;
+        input {
+            font-size: $font-size-16 !important;
+        }
+    }
+    .p-autocomplete-multiple-container:not(.p-disabled):hover,  
+    .p-autocomplete-multiple-container:not(.p-disabled).focus{
+        border-color: $gray-soft !important;
+        box-shadow: none !important;
+    }
+    .p-autocomplete-token {
+        background-color: rgba($partyu-purple, 0.8) !important;
+        color: $white !important;
+        &-label {
+            font-size: $font-size-16;
+        }
+        &-icon {
+            font-size: $font-size-14;
+        }
+    }
+    &-items {
+        .p-autocomplete-item {
+            font-size: $font-size-14;
+        }
+    }
+}
