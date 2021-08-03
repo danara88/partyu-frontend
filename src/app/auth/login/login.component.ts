@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../../services/auth.service';
 import { UtilsService } from '../../services/utils.service';
+import { UserProfile } from '../../models/userProfile.model';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +25,7 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private router: Router,
     private authService: AuthService,
+    private userService: UserService,
     private utilsService: UtilsService,
     private messageService: MessageService
   ) {
@@ -83,8 +86,12 @@ export class LoginComponent implements OnInit {
     this.user.email = this.loginForm.controls.email.value;
     this.user.password = this.loginForm.controls.password.value;
 
-    this.authService.login(this.user).subscribe(resp => {
+    this.authService.login(this.user).subscribe(async (resp) => {
       localStorage.setItem('access_token', resp.token);
+      
+      let identity = await this.utilsService.getUserProfileData(this.userService);
+      localStorage.setItem('identity', JSON.stringify(identity));
+
       this.router.navigateByUrl('/pages/home');
       this.spinner.hide();
       
@@ -96,8 +103,6 @@ export class LoginComponent implements OnInit {
       this.spinner.hide();
 
     });
-
-
   }
 
 }

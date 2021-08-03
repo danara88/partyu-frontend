@@ -4,6 +4,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from '../interceptors/auth-interceptor.service';
 
 import { MessageService } from 'primeng/api';
+import {ConfirmationService} from 'primeng/api';
 
 import { NgxSpinnerModule } from "ngx-spinner";
 import { DialogModule } from 'primeng/dialog';
@@ -15,6 +16,7 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { TooltipModule } from 'primeng/tooltip';
 import { DropdownModule } from 'primeng/dropdown';
 import {CheckboxModule} from 'primeng/checkbox';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 
 
@@ -33,7 +35,8 @@ import {CheckboxModule} from 'primeng/checkbox';
     SkeletonModule,
     TooltipModule,
     DropdownModule,
-    CheckboxModule
+    CheckboxModule,
+    ConfirmDialogModule
   ],
   exports: [
     NgxSpinnerModule,
@@ -45,7 +48,8 @@ import {CheckboxModule} from 'primeng/checkbox';
     SkeletonModule,
     TooltipModule,
     DropdownModule,
-    CheckboxModule
+    CheckboxModule,
+    ConfirmDialogModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
@@ -54,7 +58,8 @@ import {CheckboxModule} from 'primeng/checkbox';
       useClass: AuthInterceptorService,
       multi: true,
     },
-    MessageService
+    MessageService,
+    ConfirmationService
   ]
 })
 export class SharedModule { }

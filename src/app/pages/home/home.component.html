@@ -12,7 +12,14 @@
                 </div>
                 <div class="event__content">
                     <div class="event__content-header d-flex flex-column">
-                        <span class="event__title cursor-pointer">{{ event.title }}</span>
+                        <div class="d-flex justify-between">
+                            <span class="event__title cursor-pointer">{{ event.title }}</span>
+                            <i class="pi pi-ellipsis-v cursor-pointer event__dots" 
+                              (click)="op2.toggle($event)"
+                              *ngIf="user.role === 'ROLE_ADMIN'">
+                            </i>
+                        </div>      
+                       
                         <span class="event__date">{{ event.region?.city }} | Saturday August 19 10:00pm </span>
                     </div>
                     <div class="event__content-footer d-flex justify-between">
@@ -34,6 +41,18 @@
 
                     </div>
                 </div>
+
+                <!-- Dropdown -->
+                <p-overlayPanel #op2 class="p-overlaypanel--event" [dismissable]="true">
+                    <ng-template pTemplate>
+                        <div class="p-overlaypanel__options">
+                            <a class="mb-10 cursor-pointer">Edit Event</a>
+                            <a class="mb-10 cursor-pointer text-danger" (click)="confirm(event)">Delete Event</a>
+                        </div>
+                    </ng-template>
+                </p-overlayPanel>
+                <!-- Dropdown -->
+
 
             </div>
             <!-- Event Card -->
@@ -144,6 +163,22 @@
     <!-- Notifications -->
 
 </div>
+
+<!-- Confirmation popup -->
+<p-confirmDialog #cdConfirmDelete 
+                class="confirm-dialog-custom"
+                [breakpoints]="{'960px': '75vw', '640px': '100vw'}" 
+                [style]="{width: '36.5rem'}">
+    <ng-template pTemplate="header">
+        Delete Event
+    </ng-template>
+    
+    <ng-template pTemplate="footer">
+        <button class="btn--clear btn--small" (click)="cdConfirmDelete.reject()">Close</button>
+        <button type="submit" class="btn btn--small" (click)="cdConfirmDelete.accept()">Delete</button>
+    </ng-template>
+</p-confirmDialog>
+<!-- Confirmation popup -->
 
 <!-- Alerts Messages -->
 <p-toast key="recoverPasswordHomeSuccess"></p-toast>

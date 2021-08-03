@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/models/user.model';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-register',
@@ -19,6 +20,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
+    private utilsService: UtilsService,
     private spinner: NgxSpinnerService,
     private router: Router          
   ) {
@@ -78,9 +80,14 @@ export class RegisterComponent implements OnInit {
     this.user.email = this.registerForm.controls['email'].value;
     this.user.password = this.registerForm.controls['password'].value;
 
-    this.userService.register(this.user).subscribe(resp => {
+    this.userService.register(this.user).subscribe(async (resp) => {
       this.spinner.hide();
+
       localStorage.setItem('access_token', resp.token);
+
+      let identity = await this.utilsService.getUserProfileData(this.userService);
+      localStorage.setItem('identity', JSON.stringify(identity));
+
       this.router.navigateByUrl('/pages/home');
       this.router.navigate([`/pages/home`], { state: { RegisterSuccess: true, fullname: this.user.fullname } });
 

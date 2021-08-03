@@ -1,0 +1,15 @@
+.confirm-dialog-custom {
+    .p-dialog {
+        &-header {
+            font-family: $font-family-overlock;
+            font-size: $font-size-18;
+            font-weight: $font-weight-bold;
+        }
+        &-content {
+            .p-confirm-dialog-message {
+                font-family: $font-family-overlock;
+                font-size: $font-size-18;
+            }
+        }
+    }
+}

@@ -36,14 +36,17 @@ export class MyEventsComponent implements OnInit {
   }
 
   getMyEvents() {
+    this.spinner.show();
     this.eventsService.getMyEventsParticipation(true).subscribe(events => {
       this.events = events;
       this.loader = false;
+      this.spinner.hide();
 
     }, error => {
       console.log(error);
       this.utilsService.showToastMessage('homeToast', 'error', 'Attend to event', error.error.message, this.messageService);
       this.loader = false;
+      this.spinner.hide();
 
     });
   }

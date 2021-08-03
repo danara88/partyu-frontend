@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { Router } from '@angular/router';
-import { UserService } from '../../services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Region } from '../../models/region.model';
 import { RegionService } from '../../services/region.service';
@@ -11,6 +10,7 @@ import { EventsService } from '../../services/events.service';
 import { MessageService } from 'primeng/api';
 import { UserProfile } from '../../models/userProfile.model';
 import { UtilsService } from '../../services/utils.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -30,10 +30,10 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private userService: UserService,
     private regionService: RegionService,
     private eventService: EventsService,
     private utilsService: UtilsService,
+    private authService: AuthService,
     private messageService: MessageService,
     private spinner: NgxSpinnerService,
     private fb: FormBuilder
@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit {
     this.displayModal = false;
     this.displayModalCreateEvent = false;
 
-    this.user = new UserProfile('','');
+    this.user = this.authService.getIdentity()!;
     this.regions = [];
 
     this.eventForm = new FormGroup({});
@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getProfile();
+    this.firstLetter = this.utilsService.getFirstLetter(this.user.fullname);
     this.createForm();
     this.getRegions();
   }
@@ -142,21 +142,6 @@ export class HeaderComponent implements OnInit {
 
     })
 
-  }
-
-  /**
-   * Get Profile User Data
-   */
-  getProfile() {
-    this.userService.getUserProfile().subscribe(userProfile => {
-      this.user = userProfile;
-      this.firstLetter = this.utilsService.getFirstLetter(this.user.fullname);
-
-    }, error => {
-      console.log(error);
-      this.utilsService.showToastMessage('headerToastMessage', 'error', 'Create Profile Data', error.error.message, this.messageService);
-
-    });
   }
 
 }

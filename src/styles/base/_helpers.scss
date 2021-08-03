@@ -465,3 +465,12 @@
     @extend .material-icons-outlined;
     font-family: "Material Icons";
 }
+
+/**
+* Custom classes for direct colors
+*/
+.text {
+    &-danger {
+        color: $red;
+    }
+}

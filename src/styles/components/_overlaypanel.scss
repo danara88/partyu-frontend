@@ -37,3 +37,20 @@
         }
     }   
 }
+
+// Event Overaypanel Config
+.p-overlaypanel--event {
+    .p-overlaypanel {
+        position: absolute;
+        right: 0rem;
+        left: auto !important;  
+        top: 2rem !important;
+        &__options {
+            @include align-column();
+            & a {
+                font-family: $font-family-overlock;
+                font-size: $font-size-16;
+            }
+        }
+    }
+}

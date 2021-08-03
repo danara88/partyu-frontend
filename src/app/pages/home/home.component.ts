@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { MessageService, ConfirmationService } from 'primeng/api';
 import { NgxSpinnerService } from "ngx-spinner";
 import { Event } from 'src/app/models/event.model';
 import { EventsService } from '../../services/events.service';
 import { UtilsService } from '../../services/utils.service';
 import { ParticipantService } from '../../services/participant.service';
-import { Participant } from 'src/app/models/participant';
+import { UserProfile } from '../../models/userProfile.model';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -19,19 +20,25 @@ export class HomeComponent implements OnInit {
   public myParticipationsIDs: string[];
   public loader: boolean;
   public skeletons: number[];
+  public displayModalConfirmDelete: boolean;
+  public user: UserProfile;
 
   constructor(
     private messageService: MessageService,
     private eventsService: EventsService,
     private participantService: ParticipantService,
+    private confirmationService: ConfirmationService,
     private spinner: NgxSpinnerService,
     private utilsService: UtilsService,
+    private authService: AuthService,
   ) { 
 
     this.events = [];
     this.myParticipationsIDs = [];
     this.loader = true;
     this.skeletons = [1,2,3,4,5,6,7,8,9,10];
+    this.displayModalConfirmDelete = false;
+    this.user = this.authService.getIdentity()!;
 
   }
 
@@ -103,6 +110,19 @@ export class HomeComponent implements OnInit {
   }
 
   /**
+   * Confirm if delete event or not
+   * @param event 
+   */
+  confirm(event: Event) {
+    this.confirmationService.confirm({
+      message: `Are you want to delete event: ${event.title} ?`,
+      accept: () => {
+         this.deleteEvent(event);
+      }
+    });
+  }
+
+  /**
    * Method to get all the events that the user is participating
    * @returns 
    */
@@ -116,6 +136,20 @@ export class HomeComponent implements OnInit {
         reject(error);
       });
     });
+  }
+
+  deleteEvent(event: Event) {
+    this.spinner.show();
+    this.eventsService.deleteEvent(event).subscribe(event => {
+      this.spinner.hide();
+      this.utilsService.showToastMessage('homeToast', 'success', 'Delete Event', `The event ${ event.title } was deleted`, this.messageService);
+      this.events.splice(this.events.indexOf(event), 1);
+
+    }, error => {
+      console.log(error);
+      this.spinner.hide();
+      this.utilsService.showToastMessage('homeToast', 'error', 'Delete Event', 'Something went wrong', this.messageService);
+    })
   }
 
 }

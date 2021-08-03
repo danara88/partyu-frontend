@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { UserProfile } from '../models/userProfile.model';
 
 interface LoginResponse {
   token: string
@@ -14,8 +15,21 @@ interface LoginResponse {
 export class AuthService {
 
   public apiUrl: string = environment.apiUrl;
+  public identity: UserProfile | null = new UserProfile('','');
 
   constructor(private http: HttpClient) { }
+
+  /**
+   * Get user identity
+   * @returns 
+   */
+  getIdentity(): UserProfile | null {
+    let identity: UserProfile = JSON.parse(localStorage.getItem('identity')!);
+    this.identity = null;
+    if (identity !== undefined) this.identity = identity;
+
+    return this.identity;
+  }
 
   /**
    * Call login API to authenticate user

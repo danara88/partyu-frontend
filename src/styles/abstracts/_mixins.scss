@@ -8,6 +8,11 @@
     align-items: center;
 }
 
+@mixin align-column() {
+    display: flex;
+    flex-direction: column;
+}
+
 /**
 * Centrar contenido horizontal al centro
 */

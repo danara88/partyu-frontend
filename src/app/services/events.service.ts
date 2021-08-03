@@ -42,4 +42,13 @@ export class EventsService {
     return this.http.get<Participant[]>(`${ this.apiUrl }api/events/my-events-participations`);
   }
 
+  /**
+   * Delete an Event
+   * @param event 
+   * @returns 
+   */
+  deleteEvent(event: Event): Observable<Event> {
+    return this.http.delete<Event>(`${ this.apiUrl }api/events/${ event._id }`);
+  }
+
 }

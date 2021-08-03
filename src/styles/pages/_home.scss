@@ -13,6 +13,7 @@
 .event {
     width: 34rem;
     margin: 1rem;
+    position: relative;
     &__image {
         width: 7rem;
         & > img {
@@ -39,7 +40,10 @@
             margin-right: .7rem;
         }
     }
-    
+    &__dots {
+        color: #858585;
+        font-size: $font-size-14 !important;
+    }
 }
 
 /**
