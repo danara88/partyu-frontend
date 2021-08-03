@@ -71,58 +71,6 @@ export class HomeComponent implements OnInit {
   }
 
   /**
-   * This method will allow users to attend to an event
-   * @param event 
-   */
-  attendToEvent(event: Event) {
-    this.spinner.show();
-    this.participantService.attendToEvent(event._id!).subscribe(participant => {
-      this.utilsService.showToastMessage('homeToast', 'success', 'Attend to event', `You confirm your place in ${event.title} !`, this.messageService);
-      this.spinner.hide();
-      this.myParticipationsIDs.push(event._id!);
-
-    }, error => {
-      console.log(error);
-      this.spinner.hide();
-      this.utilsService.showToastMessage('homeToast', 'error', 'Attend to event', error.error.message, this.messageService);
-      
-    })
-  }
-
-
-   /**
-   * This method will allow users to attend to an event
-   * @param event 
-   */
-  notAttendToEvent(event: Event) {
-    this.spinner.show();
-    this.participantService.notAttendToEvent(event._id!).subscribe(participant => {
-      this.utilsService.showToastMessage('homeToast', 'success', 'Not Attend to event', `Your participation was removed`, this.messageService);
-      this.myParticipationsIDs.splice(this.myParticipationsIDs.indexOf(event._id!), 1);
-      this.spinner.hide();
-
-    }, error => {
-      console.log(error);
-      this.spinner.hide();
-      this.utilsService.showToastMessage('homeToast', 'error', 'Attend to event', 'Something went wrong', this.messageService);
-      
-    })
-  }
-
-  /**
-   * Confirm if delete event or not
-   * @param event 
-   */
-  confirm(event: Event) {
-    this.confirmationService.confirm({
-      message: `Are you want to delete event: ${event.title} ?`,
-      accept: () => {
-         this.deleteEvent(event);
-      }
-    });
-  }
-
-  /**
    * Method to get all the events that the user is participating
    * @returns 
    */
@@ -136,20 +84,6 @@ export class HomeComponent implements OnInit {
         reject(error);
       });
     });
-  }
-
-  deleteEvent(event: Event) {
-    this.spinner.show();
-    this.eventsService.deleteEvent(event).subscribe(event => {
-      this.spinner.hide();
-      this.utilsService.showToastMessage('homeToast', 'success', 'Delete Event', `The event ${ event.title } was deleted`, this.messageService);
-      this.events.splice(this.events.indexOf(event), 1);
-
-    }, error => {
-      console.log(error);
-      this.spinner.hide();
-      this.utilsService.showToastMessage('homeToast', 'error', 'Delete Event', 'Something went wrong', this.messageService);
-    })
   }
 
 }

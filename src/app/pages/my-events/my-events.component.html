@@ -9,31 +9,16 @@
         </p>
 
         <div class="events mt-15" *ngIf="!loader">
+
             <!-- Event Card -->
-            <div class="event d-flex align-center white-box" *ngFor="let event of events">
-                <div class="event__image cursor-pointer">
-                    <img src="../../../assets/images/cheers.svg" alt="Event Alt">
-                </div>
-                <div class="event__content">
-                    <div class="event__content-header d-flex flex-column">
-                        <span class="event__title cursor-pointer">{{ event.title }}</span>
-                        <span class="event__date">{{ event.region?.city }} | Saturday August 19 10:00pm </span>
-                    </div>
-                    <div class="event__content-footer d-flex justify-between">
-                        <span class="event__people d-flex items-center">
-                            <i class="pi pi-users"></i>
-                            219
-                        </span>
-
-                        <button class="btn btn--icon-only" 
-                                (click)="notAttendToEvent(event)">
-                                 <i class="pi pi-check"></i>
-                        </button>
-
-                    </div>
-                </div>
-
-            </div>
+            <app-event *ngFor="let event of events"
+                        [user]="user" 
+                        [events]="events" 
+                        [event]="event"
+                        [showAdminOptions]="false"
+                        [isMyEventsSection]="true"
+                        (reloadEvents)="reloadEvents($event)">
+            </app-event>
             <!-- Event Card -->
 
             <!-- Empty Message -->

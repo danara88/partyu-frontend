@@ -9,6 +9,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { LateralMenuComponent } from './lateral-menu/lateral-menu.component';
 import { HeaderComponent } from './header/header.component';
 import { ProfileComponent } from './profile/profile.component';
+import { EventComponent } from './event/event.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
     LateralMenuComponent,
     HeaderComponent,
     ProfileComponent,
+    EventComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { ProfileComponent } from './profile/profile.component';
     LateralMenuComponent,
     HeaderComponent,
     ProfileComponent,
+    EventComponent
   ]
 })
 export class ComponentsModule { }

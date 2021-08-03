@@ -37,7 +37,7 @@ export class EventsService {
    */
   getMyEventsParticipation(eventsFormat: boolean = false): Observable<Participant[] | Event[]> {
     if (eventsFormat) {
-      return this.http.get<Event[]>(`${ this.apiUrl }api/events/my-events-participations/true`);
+      return this.http.get<Event[]>(`${ this.apiUrl }api/events/my-events-participations?eventsformat=true`);
     }
     return this.http.get<Participant[]>(`${ this.apiUrl }api/events/my-events-participations`);
   }

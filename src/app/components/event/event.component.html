@@ -1,0 +1,51 @@
+<div class="event d-flex align-center white-box">
+    <div class="event__image cursor-pointer">
+        <img src="../../../assets/images/cheers.svg" alt="Event Alt">
+    </div>
+    <div class="event__content">
+        <div class="event__content-header d-flex flex-column">
+            <div class="d-flex justify-between">
+                <span class="event__title cursor-pointer">{{ event.title }}</span>
+                <i class="pi pi-ellipsis-v cursor-pointer event__dots" 
+                  (click)="op2.toggle($event)"
+                  *ngIf="user.role === 'ROLE_ADMIN' && showAdminOptions">
+                </i>
+            </div>      
+           
+            <span class="event__date">{{ event.region?.city }} | Saturday August 19 10:00pm </span>
+        </div>
+        <div class="event__content-footer d-flex justify-between">
+            <span class="event__people d-flex items-center">
+                <i class="pi pi-users"></i>
+                219
+            </span>
+
+            <button class="btn--clear btn--icon-only" 
+                   (click)="attendToEvent()"
+                   *ngIf="!myParticipationsIDs.includes(event._id!) && !isMyEventsSection">
+                    <i class="pi pi-check"></i>
+            </button>
+            <button class="btn btn--icon-only" 
+                    (click)="notAttendToEvent()"
+                    *ngIf="myParticipationsIDs.includes(event._id!) || isMyEventsSection">
+                     <i class="pi pi-check"></i>
+            </button>
+
+        </div>
+    </div>
+
+    <!-- Dropdown -->
+    <p-overlayPanel #op2 class="p-overlaypanel--event" [dismissable]="true">
+        <ng-template pTemplate>
+            <div class="p-overlaypanel__options">
+                <a class="mb-10 cursor-pointer">Edit Event</a>
+                <a class="mb-10 cursor-pointer text-danger" (click)="confirm(event)">Delete Event</a>
+            </div>
+        </ng-template>
+    </p-overlayPanel>
+    <!-- Dropdown -->
+
+
+</div>
+
+
