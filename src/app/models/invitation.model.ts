@@ -1,8 +1,10 @@
+import { Event } from './event.model';
 import { User } from './user.model';
+
 export class Invitation {
     constructor(
-        public user: string | User,
-        public event: string | Event,
+        public user: User | string,
+        public event: Event,
         public message: string,
         public statusInvitation: number,
         public status: boolean,

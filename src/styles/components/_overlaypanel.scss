@@ -38,7 +38,7 @@
     }   
 }
 
-// Event Overaypanel Config
+// Event Overlaypanel Config
 .p-overlaypanel--event {
     .p-overlaypanel {
         position: absolute;
@@ -51,6 +51,18 @@
                 font-family: $font-family-overlock;
                 font-size: $font-size-16;
             }
+        }
+    }
+}
+
+// Notifications Overlaypanel Config
+.p-overlaypanel--notifications {
+    .p-overlaypanel {
+        right: 5rem;
+        left: auto !important;
+        top: 5rem !important;
+        &-content {
+            width: 33rem;
         }
     }
 }

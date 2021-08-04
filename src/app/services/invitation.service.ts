@@ -23,4 +23,12 @@ export class InvitationService {
     return this.http.post<Invitation>(`${ this.apiUrl }api/invitations`, invitation);
   }
 
+  /**
+   * Get all the invitations
+   * @returns 
+   */
+  getMyInvitations(limit: number = 5): Observable<{total: number, invitations: Invitation[]}> {
+    return this.http.get<{total: number, invitations: Invitation[]}>(`${ this.apiUrl }api/invitations?limit=${ limit }`);
+  }
+
 }

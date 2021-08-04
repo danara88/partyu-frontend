@@ -22,11 +22,11 @@
             </div>
             <i class="pi pi-angle-down ml-15"></i>
         </div>
-        <i class="pi pi-bell ml-25"></i>
+        <i class="pi pi-bell ml-25 cursor-pointer" (click)="opNotifications.toggle($event)"></i>
     </div>
 </header>
 
-<!-- Dropdown -->
+<!-- Dropdown Options -->
 <p-overlayPanel #op class="p-overlaypanel--header" [dismissable]="false">
     <ng-template pTemplate>
         <div class="p-overlaypanel__options">
@@ -38,6 +38,15 @@
                 Log out
             </a>
         </div>
+    </ng-template>
+</p-overlayPanel>
+<!-- Dropdown Options -->
+
+
+<!-- Dropdown Notifications -->
+<p-overlayPanel #opNotifications class="p-overlaypanel--notifications" [dismissable]="true">
+    <ng-template pTemplate>
+        <app-notifications></app-notifications>
     </ng-template>
 </p-overlayPanel>
 <!-- Dropdown -->

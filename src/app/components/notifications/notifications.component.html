@@ -1,0 +1,91 @@
+<div class="notifications-container white-box">
+
+    <span class="notifications__title">Notifications</span>
+
+    <div class="notifications">
+
+        <!-- Notification -->
+        <p-messages severity="success" class="notification" *ngFor="let invitation of initialInvitations">
+            <ng-template pTemplate>
+                <div class="notification__content d-flex justify-between">
+
+                    <div class="d-flex flex-column">
+                        <span class="notification__title">You were invited to a party</span>
+                        <a class="notification__event-link">{{ invitation.event.title }} | At Monday</a>
+                        <span class="notification__time">12:00 am</span>
+                    </div>
+
+                    <div class="d-flex justify-end items-center notification__buttons">
+                        <button class="btn--clear btn--icon-only">
+                            <i class="pi pi-check"></i>
+                        </button>
+                        <button class="btn--clear btn--icon-only ml-4">
+                            <i class="pi pi-times"></i>
+                        </button>
+                    </div>
+
+                </div>
+            
+            </ng-template>
+        </p-messages>
+        <!-- Notification -->
+
+         <!-- Empty Message -->
+         <div class="empty-message d-flex items-center flex-column" *ngIf="!initialInvitations.length && !loader">
+            <span class="empty-message__text">Not notifications for now</span>
+        </div>
+        <!-- Empty Message -->
+
+        <!-- Skeleton -->
+        <div class="custom-skeleton mt-15 mb-15" *ngIf="loader">
+            <ul class="p-m-0 p-p-0">
+                <li class="p-mb-4">
+                    <div class="p-d-flex">
+                        <p-skeleton shape="circle" size="4rem" styleClass="p-mr-2"></p-skeleton>
+                        <div style="flex: 1">
+                            <p-skeleton width="100%" styleClass="p-mb-2"></p-skeleton>
+                            <p-skeleton width="75%" styleClass="p-mb-2"></p-skeleton>
+                            <p-skeleton width="50%"></p-skeleton>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-mb-4">
+                    <div class="p-d-flex">
+                        <p-skeleton shape="circle" size="4rem" styleClass="p-mr-2"></p-skeleton>
+                        <div style="flex: 1">
+                            <p-skeleton width="100%" styleClass="p-mb-2"></p-skeleton>
+                            <p-skeleton width="75%" styleClass="p-mb-2"></p-skeleton>
+                            <p-skeleton width="50%"></p-skeleton>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-mb-4">
+                    <div class="p-d-flex">
+                        <p-skeleton shape="circle" size="4rem" styleClass="p-mr-2"></p-skeleton>
+                        <div style="flex: 1">
+                            <p-skeleton width="100%" styleClass="p-mb-2"></p-skeleton>
+                            <p-skeleton width="75%" styleClass="p-mb-2"></p-skeleton>
+                            <p-skeleton width="50%"></p-skeleton>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-mb-4">
+                    <div class="p-d-flex">
+                        <p-skeleton shape="circle" size="4rem" styleClass="p-mr-2"></p-skeleton>
+                        <div style="flex: 1">
+                            <p-skeleton width="100%" styleClass="p-mb-2"></p-skeleton>
+                            <p-skeleton width="75%" styleClass="p-mb-2"></p-skeleton>
+                            <p-skeleton width="50%"></p-skeleton>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- Skeleton -->
+
+    </div>
+
+    <div class="notifications__footer cursor-pointer" *ngIf="initialInvitations.length > 4 && !loader">
+       View More
+    </div>
+</div>
