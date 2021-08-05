@@ -22,6 +22,12 @@
     justify-content: center;
 }
 
+@mixin justify-space-between() {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 @mixin align-items-row() {
     display: flex;
     flex-direction: row;

@@ -27,8 +27,27 @@ export class InvitationService {
    * Get all the invitations
    * @returns 
    */
-  getMyInvitations(limit: number = 5): Observable<{total: number, invitations: Invitation[]}> {
-    return this.http.get<{total: number, invitations: Invitation[]}>(`${ this.apiUrl }api/invitations?limit=${ limit }`);
+  getMyInvitations(limit: number = 5, all: number = 0): Observable<{total: number, invitations: Invitation[]}> {
+    return this.http.get<{total: number, invitations: Invitation[]}>(`${ this.apiUrl }api/invitations?limit=${ limit }&all=${ all }`);
   }
+
+  /**
+   * Accept an Invitation to an Event
+   * @param invitation 
+   * @returns 
+   */
+  acceptInvitation(invitation: Invitation): Observable<Invitation> {
+    return this.http.post<Invitation>(`${ this.apiUrl }api/invitations/accept/${ invitation._id }`, {});
+  }
+
+  /**
+   * Accept an Invitation to an Event
+   * @param invitation 
+   * @returns 
+   */
+  rejectInvitation(invitation: Invitation): Observable<Invitation> {
+    return this.http.post<Invitation>(`${ this.apiUrl }api/invitations/reject/${ invitation._id }`, {});
+  }
+
 
 }

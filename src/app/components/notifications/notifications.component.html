@@ -1,13 +1,13 @@
 <div class="notifications-container white-box">
 
-    <span class="notifications__title">Notifications</span>
+    <span class="notifications__title" *ngIf="title">Notifications</span>
 
     <div class="notifications">
 
         <!-- Notification -->
         <p-messages severity="success" class="notification" *ngFor="let invitation of initialInvitations">
             <ng-template pTemplate>
-                <div class="notification__content d-flex justify-between">
+                <div class="notification__content d-flex justify-between" [ngStyle]="{'width': biggerNotifications ? '100%' : 'auto' }">
 
                     <div class="d-flex flex-column">
                         <span class="notification__title">You were invited to a party</span>
@@ -15,14 +15,20 @@
                         <span class="notification__time">12:00 am</span>
                     </div>
 
-                    <div class="d-flex justify-end items-center notification__buttons">
-                        <button class="btn--clear btn--icon-only">
+                    <div class="d-flex justify-end items-center notification__buttons" *ngIf="invitation.statusInvitation === 0">
+                        <button class="btn--clear btn--icon-only" (click)="acceptOrRejectInvitation(invitation, true)">
                             <i class="pi pi-check"></i>
                         </button>
-                        <button class="btn--clear btn--icon-only ml-4">
+                        <button class="btn--clear btn--icon-only ml-4" (click)="acceptOrRejectInvitation(invitation, false)">
                             <i class="pi pi-times"></i>
                         </button>
                     </div>
+
+                    <div class="d-flex justify-end items-center notification__buttons" *ngIf="invitation.statusInvitation !== 0">
+                        <span class="notification__alert-message text-danger" *ngIf="invitation.statusInvitation === 1">You rejected this event</span>
+                        <span class="notification__alert-message text-success" *ngIf="invitation.statusInvitation === 2">You accepted this event</span>
+                    </div>
+
 
                 </div>
             
@@ -85,7 +91,7 @@
 
     </div>
 
-    <div class="notifications__footer cursor-pointer" *ngIf="initialInvitations.length > 4 && !loader">
+    <div routerLink="/pages/notifications" class="notifications__footer cursor-pointer" *ngIf="initialInvitations.length > 4 && !loader">
        View More
     </div>
 </div>
