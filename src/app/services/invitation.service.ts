@@ -27,8 +27,8 @@ export class InvitationService {
    * Get all the invitations
    * @returns 
    */
-  getMyInvitations(limit: number = 5): Observable<{total: number, invitations: Invitation[]}> {
-    return this.http.get<{total: number, invitations: Invitation[]}>(`${ this.apiUrl }api/invitations?limit=${ limit }`);
+  getMyInvitations(limit: number = 5, all: number = 0): Observable<{total: number, invitations: Invitation[]}> {
+    return this.http.get<{total: number, invitations: Invitation[]}>(`${ this.apiUrl }api/invitations?limit=${ limit }&all=${ all }`);
   }
 
   /**

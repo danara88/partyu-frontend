@@ -8,6 +8,7 @@ import { ComponentsModule } from '../components/components.module';
 import { PagesComponent } from './pages.component';
 import { HomeComponent } from './home/home.component';
 import { MyEventsComponent } from './my-events/my-events.component';
+import { NotificationsPageComponent } from './notifications-page/notifications-page.component';
 
 
 
@@ -15,7 +16,8 @@ import { MyEventsComponent } from './my-events/my-events.component';
   declarations: [
     PagesComponent,
     HomeComponent,
-    MyEventsComponent
+    MyEventsComponent,
+    NotificationsPageComponent
   ],
   imports: [
     CommonModule,

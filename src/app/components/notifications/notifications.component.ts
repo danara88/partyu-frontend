@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
 import { Invitation } from 'src/app/models/invitation.model';
 import { InvitationService } from '../../services/invitation.service';
@@ -10,7 +10,12 @@ import { UtilsService } from '../../services/utils.service';
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.scss']
 })
-export class NotificationsComponent implements OnInit {
+export class NotificationsComponent implements OnInit{
+
+  @Input() public title: boolean = true;
+  @Input() public biggerNotifications: boolean = false;
+  @Input() public allNotifications: boolean = false;
+  @Input() public limit: number = 4;
 
   public initialInvitations: Invitation[];
   public loader: boolean;
@@ -28,15 +33,18 @@ export class NotificationsComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.getInvitations(4);
+    if (this.allNotifications) {
+      this.getInvitations(10, 1);
+    } else {
+      this.getInvitations(this.limit, 0);
+    }
   }
 
   /**
    * Get invitations
    */
-  getInvitations(limit: number) {
-    this.loader = true;
-    this.invitationService.getMyInvitations(limit).subscribe(resp => {
+  getInvitations(limit: number, all: number = 0) {
+    this.invitationService.getMyInvitations(limit, all).subscribe(resp => {
       this.initialInvitations = resp.invitations;
       this.loader = false;
   

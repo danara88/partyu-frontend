@@ -64,3 +64,62 @@ button[disabled] {
     opacity: 0.5;
     cursor: unset;
 }
+
+
+
+/**
+* Toggle btns
+*/
+.btns-toggle {
+    display: flex;
+    align-items: center;
+    border-radius: .6rem;
+    margin-right: 2.3rem;
+    background-color: $light-gray;
+
+    &--header {
+        background-color: #fff;
+    }
+
+    &__item {
+        background-color: $white;
+        color: $bluish-gray;
+        font-size: 1.8rem;
+        cursor: pointer;
+        padding: .4rem;
+        height: 3.2rem;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+
+        &.btns-toggle__item--header {
+            border-radius: .6rem;
+        }
+
+        &.btns-toggle__item--left {
+            border-radius: .6rem 0rem 0rem .6rem;
+        }
+
+        &.btns-toggle__item--right {
+            border-radius: 0rem .6rem .6rem 0rem;
+        }
+        
+        &--active {
+            background-color: $bluish-gray;
+            color: $white;
+
+            &.btns-toggle__item--left {
+                border-radius: .6rem;
+            }
+
+            &.btns-toggle__item--right {
+                border-radius: .6rem;
+            }
+
+        }
+
+        .material-icons {
+            text-align: center;
+        }
+    }
+} 

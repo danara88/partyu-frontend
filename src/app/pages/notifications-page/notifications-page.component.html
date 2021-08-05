@@ -1,0 +1,41 @@
+<div class="p-grid home-container"> 
+    <div class="p-col">
+        
+        <div class="page page__container page__container--small">
+
+            <div class="page__header">
+                <span class="page__title">Notifications</span>
+
+                <div class="page__header-right">
+                    <div class="btns-toggle">
+
+                        <div class="btns-toggle__item btns-toggle__item--left" (click)="showActualNotifications()" [ngClass]="{'btns-toggle__item--active': notificationsSection == 1}">
+                            <span class="material-icons">
+                                announcement
+                            </span>
+                        </div>
+
+                        <div class="btns-toggle__item btns-toggle__item--right" (click)="showAllNotifications()" [ngClass]="{'btns-toggle__item--active': notificationsSection == 2}">
+                            <span class="material-icons">
+                                toc
+                            </span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="page__content white-box">
+                <!-- Actual Notifications -->
+                <app-notifications [title]="false" [biggerNotifications]="true" [limit]="10" *ngIf="notificationsSection === 1"></app-notifications>
+                <!-- Actual Notifications -->
+
+                 <!-- All Notifications -->
+                 <app-notifications [title]="false" [biggerNotifications]="true" [allNotifications]="true" *ngIf="notificationsSection === 2"></app-notifications>
+                 <!-- All Notifications -->
+            </div>
+
+        </div>
+
+    </div>
+</div>

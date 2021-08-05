@@ -1,0 +1,20 @@
+
+
+.page {
+    &__container {
+        margin: 0 auto;
+
+        &--small {
+            width: 65rem;
+        }
+    }
+    &__header {
+        margin: 2rem 0;
+        @include justify-space-between();
+    }
+    &__title {
+        font-size: $font-size-22;
+        font-weight: $font-weight-bold;
+        color: $gray;
+    }
+}
