@@ -30,7 +30,7 @@ export class UtilsService {
       severity: severity, 
       summary: summary, 
       detail: detail,
-      life: 4000,
+      life: 2000,
       closable: false
     });
   }

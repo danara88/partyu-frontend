@@ -3,6 +3,7 @@ import { User } from './user.model';
 
 export class Invitation {
     constructor(
+        public _id: string,
         public user: User | string,
         public event: Event,
         public message: string,
