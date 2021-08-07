@@ -28,6 +28,8 @@ export class EventComponent implements OnInit {
   public numberParticipants: number;
   public participants: Participant[];
   public displayModalParticipants: boolean;
+  public startDate: string;
+  public startHour: string;
 
   constructor(
     private eventsService: EventsService,
@@ -47,14 +49,17 @@ export class EventComponent implements OnInit {
     this.numberParticipants = 0;
     this.participants = [];
     this.displayModalParticipants = false;
+    this.startDate = '';
+    this.startHour = '';
 
   }
 
   ngOnInit(): void {
+    this.startDate = this.utilsService.getDateFormat(this.event.eventStart!);
+    this.startHour = this.utilsService.getDateHour(this.event.eventStart!);
     this.getListParticipants();
   }
 
-  
   /**
    * This method will allow users to attend to an event
    * @param event 

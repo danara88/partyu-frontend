@@ -12,7 +12,8 @@
                 </i>
             </div>      
            
-            <span class="event__date">{{ event.region?.city }} | Saturday August 19 10:00pm </span>
+            <span class="event__date">{{ event.region?.city }} | {{ startDate }} </span>
+            <span class="event__date">{{ startHour }}</span>
         </div>
         <div class="event__content-footer d-flex justify-between">
             <span class="event__people d-flex items-center cursor-pointer" (click)="showModalParticipants()">
