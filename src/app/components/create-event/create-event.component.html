@@ -43,6 +43,26 @@
 
         <div class="form__group">
             <div class="form__group--head">
+                <label class="form__label">Start Date</label>
+            </div>
+            <p-calendar formControlName="eventStart" 
+                        dateFormat="dd/mm/yy"
+                        [showTime]="true"
+                        hourFormat="24"></p-calendar>
+        </div>
+
+        <div class="form__group">
+            <div class="form__group--head">
+                <label class="form__label">End Date</label>
+            </div>
+            <p-calendar formControlName="eventEnd" 
+                        dateFormat="dd/mm/yy"
+                        [showTime]="true"
+                        hourFormat="24"></p-calendar>
+        </div>
+
+        <div class="form__group">
+            <div class="form__group--head">
                 <label class="form__label">Description</label>
             </div>
             <textarea type="text" 

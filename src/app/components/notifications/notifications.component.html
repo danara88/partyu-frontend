@@ -11,7 +11,7 @@
 
                     <div class="d-flex flex-column">
                         <span class="notification__title">You were invited to a party</span>
-                        <a class="notification__event-link">{{ invitation.event.title }} | At Monday</a>
+                        <a class="notification__event-link">{{ invitation.event.title }} | {{ utilsService.getDateFormat(invitation.event.eventStart!) }}</a>
                         <span class="notification__time">12:00 am</span>
                     </div>
 

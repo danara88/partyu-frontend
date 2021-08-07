@@ -22,7 +22,7 @@ export class NotificationsComponent implements OnInit{
 
   constructor(
     private invitationService: InvitationService,
-    private utilsService: UtilsService,
+    public utilsService: UtilsService,
     private messageService: MessageService,
     private spinner: NgxSpinnerService,
   ) {

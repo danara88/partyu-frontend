@@ -49,4 +49,35 @@ export class UtilsService {
     });
   }
 
+  
+  /**
+   * Get a custom date format 
+   * Ex. Saturday, August 7, 2021
+   * @param myDate 
+   * @returns 
+   */
+   getDateFormat(myDate: string | Date): string {
+    const dateFormatted = new Date(myDate);
+    
+    const day = new Intl.DateTimeFormat('en-US', { weekday: 'long'}).format(dateFormatted);
+    const dayNumeric = new Intl.DateTimeFormat('en-US', { day: 'numeric'}).format(dateFormatted);
+    const month = new Intl.DateTimeFormat('en-US', { month: 'long'}).format(dateFormatted);
+    const year = new Intl.DateTimeFormat('en-US', { year: 'numeric'}).format(dateFormatted);
+
+    return `${ day }, ${ month } ${ dayNumeric }, ${ year }`;
+  }
+
+  /**
+   * Get the hours of a date
+   * ex. 16:29
+   * @param myDate 
+   * @returns 
+   */
+  getDateHour(myDate: string | Date): string {
+    const dateFormatted = new Date(myDate);
+    const time = new Intl.DateTimeFormat('en-US', { hour12: false, hour: 'numeric', minute: 'numeric' }).format(dateFormatted);
+
+    return time;
+  }
+
 }

@@ -5,6 +5,8 @@ export class Event {
         public _id?: string,
         public title?: string,
         public description?: string,
+        public eventStart?: Date,
+        public eventEnd?: Date,
         public status?: boolean,
         public visibility?: number,
         public region?: Region,

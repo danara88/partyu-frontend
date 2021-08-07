@@ -18,6 +18,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { CalendarModule } from 'primeng/calendar';
 
 
 
@@ -38,7 +39,8 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     DropdownModule,
     CheckboxModule,
     ConfirmDialogModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    CalendarModule,
   ],
   exports: [
     NgxSpinnerModule,
@@ -52,7 +54,8 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
     DropdownModule,
     CheckboxModule,
     ConfirmDialogModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    CalendarModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
