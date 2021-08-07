@@ -115,6 +115,8 @@ export class CreateEventComponent implements OnInit {
     this.eventForm = this.fb.group({
       title: ['', [Validators.required]],
       region: ['', [Validators.required]],
+      eventStart: [null, [Validators.required]],
+      eventEnd: [null, [Validators.required]],
       description: [],
       visibility: [0, [Validators.required]],
     });
@@ -141,6 +143,8 @@ export class CreateEventComponent implements OnInit {
 
     event.title = this.eventForm.controls['title'].value,
     event.description = this.eventForm.controls['description'].value,
+    event.eventStart = new Date(this.eventForm.controls['eventStart'].value);
+    event.eventEnd = new Date(this.eventForm.controls['eventEnd'].value);
     event.visibility = 0,
     event.region = this.eventForm.controls['region'].value._id;
 

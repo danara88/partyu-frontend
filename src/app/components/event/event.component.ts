@@ -143,8 +143,13 @@ export class EventComponent implements OnInit {
     });
   }
 
+  /**
+   * Show list participants modal
+   */
   showModalParticipants() {
-    this.displayModalParticipants = true;
+    if(this.participants.length > 0) {
+      this.displayModalParticipants = true;
+    }
   }
 
 }

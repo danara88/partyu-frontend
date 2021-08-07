@@ -1,0 +1,12 @@
+.p-calendar {
+    .p-inputtext {
+        @extend .form__input;
+    }
+    .p-datepicker-header {
+        font-size: $font-size-16;
+    }
+}
+
+span.p-calendar {
+    width: 100% !important;
+}
