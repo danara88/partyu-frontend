@@ -6,6 +6,7 @@ import { ParticipantService } from '../../services/participant.service';
 import { UtilsService } from '../../services/utils.service';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { UserProfile } from '../../models/userProfile.model';
+import { Participant } from '../../models/participant';
 
 
 
@@ -24,6 +25,10 @@ export class EventComponent implements OnInit {
   @Input() public isMyEventsSection: boolean;
   @Output() public reloadEvents: EventEmitter<boolean> = new EventEmitter();
 
+  public numberParticipants: number;
+  public participants: Participant[];
+  public displayModalParticipants: boolean;
+
   constructor(
     private eventsService: EventsService,
     private participantService: ParticipantService,
@@ -39,10 +44,14 @@ export class EventComponent implements OnInit {
     this.myParticipationsIDs = [];
     this.showAdminOptions = true;
     this.isMyEventsSection = false;
+    this.numberParticipants = 0;
+    this.participants = [];
+    this.displayModalParticipants = false;
 
   }
 
   ngOnInit(): void {
+    this.getListParticipants();
   }
 
   
@@ -108,7 +117,7 @@ export class EventComponent implements OnInit {
     })
   }
 
-    /**
+  /**
    * Confirm if delete event or not
    * @param event 
    */
@@ -119,6 +128,23 @@ export class EventComponent implements OnInit {
           this.deleteEvent();
       }
     });
+  }
+
+  /**
+   * Get List Of Participants
+   */
+  getListParticipants() {
+    this.participantService.listParticipantsByEvent(this.event).subscribe(resp => {
+      this.numberParticipants = resp.total;
+      this.participants = resp.participants;
+    }, error => {
+      console.log(error);
+      this.utilsService.showToastMessage('homeToast', 'error', 'List Participants', 'Something went wrong', this.messageService);
+    });
+  }
+
+  showModalParticipants() {
+    this.displayModalParticipants = true;
   }
 
 }

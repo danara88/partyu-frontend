@@ -32,4 +32,13 @@ export class ParticipantService {
     return this.http.post<Participant>(`${ this.apiUrl }api/participants/not-attend`, {event});
   }
 
+  /**
+   * List Participants by Event
+   * @param event 
+   * @returns 
+   */
+  listParticipantsByEvent(event: Event): Observable<{total: number, participants: Participant[]}> {
+    return this.http.get<{total: number, participants: Participant[]}>(`${ this.apiUrl }api/participants/${ event._id }`);
+  }
+
 }
