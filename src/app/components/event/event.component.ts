@@ -35,7 +35,7 @@ export class EventComponent implements OnInit {
     private eventsService: EventsService,
     private participantService: ParticipantService,
     private confirmationService: ConfirmationService,
-    private utilsService: UtilsService,
+    public utilsService: UtilsService,
     private messageService: MessageService,
     private spinner: NgxSpinnerService,
   ) { 

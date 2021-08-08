@@ -58,9 +58,9 @@
           [draggable]="false">
 
         <ul class="participants">
-            <li class="participants__participant d-flex items-center mb-5" *ngFor="let participant of participants">
+            <li class="participants__participant d-flex items-center mb-10" *ngFor="let participant of participants">
                 <div class="header__user-profile ml-15 participants__participant-image">
-                    T
+                    {{ utilsService.getFirstLetter(participant.user.fullname) }}
                 </div>
                 <span class="participants__participant-fullname ml-5">{{ participant.user.fullname }}</span>
             </li>

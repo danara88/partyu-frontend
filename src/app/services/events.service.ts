@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Event } from '../models/event.model';
 import { Participant } from '../models/participant';
+import { EventCalendar } from '../models/eventCalendar.model';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +41,14 @@ export class EventsService {
       return this.http.get<Event[]>(`${ this.apiUrl }api/events/my-events-participations?eventsformat=true`);
     }
     return this.http.get<Participant[]>(`${ this.apiUrl }api/events/my-events-participations`);
+  }
+
+  /**
+   * Gets all the participantions by the user
+   * @returns 
+   */
+  getMyEventCalendar(): Observable<EventCalendar[]> {
+    return this.http.get<EventCalendar[]>(`${ this.apiUrl }api/events/my-events-calendar`);
   }
 
   /**

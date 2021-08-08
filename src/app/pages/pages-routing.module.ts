@@ -5,6 +5,7 @@ import { PagesComponent } from './pages.component';
 import { HomeComponent } from './home/home.component';
 import { MyEventsComponent } from './my-events/my-events.component';
 import { NotificationsPageComponent } from './notifications-page/notifications-page.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 const routes: Routes = [
     {
@@ -26,6 +27,10 @@ const routes: Routes = [
             {
                 path: 'notifications',
                 component: NotificationsPageComponent
+            },
+            {
+                path: 'calendar',
+                component: CalendarComponent
             }
         ]
     }
