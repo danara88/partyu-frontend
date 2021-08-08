@@ -45,6 +45,25 @@
         color: #858585;
         font-size: $font-size-14 !important;
     }
+    &-detail {
+        &__description {
+            margin: 0rem !important;
+        }
+        &__info {
+            font-size: $font-size-16;
+        }
+        &__dates {
+            .event-detail__subtitle {
+                font-size: $font-size-16;
+            }
+            .event-detail__date {
+                font-size: $font-size-14;
+            }
+            .event-detail__hour {
+                font-size: $font-size-12;
+            }
+        }
+    }
 }
 
 /**

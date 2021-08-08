@@ -1,11 +1,11 @@
 <div class="event d-flex align-center white-box">
-    <div class="event__image cursor-pointer">
+    <div class="event__image cursor-pointer" (click)="showModalDetail()">
         <img src="../../../assets/images/cheers.svg" alt="Event Alt">
     </div>
     <div class="event__content">
         <div class="event__content-header d-flex flex-column">
             <div class="d-flex justify-between">
-                <span class="event__title cursor-pointer">{{ event.title }}</span>
+                <span class="event__title cursor-pointer" (click)="showModalDetail()">{{ event.title }}</span>
                 <i class="pi pi-ellipsis-v cursor-pointer event__dots" 
                   (click)="op2.toggle($event)"
                   *ngIf="user.role === 'ROLE_ADMIN' && showAdminOptions">
@@ -40,6 +40,7 @@
         <ng-template pTemplate>
             <div class="p-overlaypanel__options">
                 <a class="mb-10 cursor-pointer">Edit Event</a>
+                <a class="mb-10 cursor-pointer" (click)="showModalDetail()">View Event Detail</a>
                 <a class="mb-10 cursor-pointer text-danger" (click)="confirm(event)">Delete Event</a>
             </div>
         </ng-template>
@@ -49,6 +50,7 @@
 
 </div>
 
+<!-- List of participants -->
 <p-dialog class="dialog--small"
           header="List of participants" 
           [(visible)]="displayModalParticipants" 
@@ -67,5 +69,53 @@
         </ul>
 
 </p-dialog>
+<!-- List of participants -->
+
+
+<!-- Event Detail -->
+<p-dialog class="dialog--small"
+          header="{{ event.title }}" 
+          [(visible)]="displayDetail" 
+          [modal]="true" 
+          [style]="{width: '36.5rem'}"
+          [baseZIndex]="10000"
+          [draggable]="false">
+
+        <p class="p-dialog__sentence p-dialog__sentence--paragraph event-detail__description">
+            {{ event.description }}
+        </p>
+        
+        <div class="event-detail__info mt-12 mb-17 d-flex flex-column">
+            <span>Location: {{ event.region?.city }}</span>
+            <span class="mt-5"><span class="font-bold cursor-pointer" (click)="showModalParticipants()">{{ numberParticipants }} persons </span>will assist to this event</span>
+        </div>
+
+        <div class="d-flex justify-between event-detail__dates mb-10">
+            <div class="d-flex flex-column">
+                <span class="event-detail__subtitle mb-5 text-purple">Event start date</span>
+                <span class="event-detail__date">{{ utilsService.getDateFormat(event.eventStart!) }}</span>
+                <span class="event-detail__hour mt-5">At {{ utilsService.getDateHour(event.eventStart!) }}</span>
+            </div>
+            <div class="d-flex flex-column ml-5">
+                <span class="event-detail__subtitle mb-5 text-purple">Event end date</span>
+                <span class="event-detail__date">{{ utilsService.getDateFormat(event.eventEnd!) }}</span>
+                <span class="event-detail__hour mt-5">To {{ utilsService.getDateHour(event.eventEnd!) }}</span>
+            </div>
+        </div>
+
+        <div class="p-dialog__btns">
+            <button type="submit" 
+                    class="btn btn--small" 
+                    (click)="attendToEvent();displayDetail=false;"
+                    *ngIf="!myParticipationsIDs.includes(event._id!) && !isMyEventsSection">Participate</button>
+            <button type="submit" 
+                    class="btn btn--small" 
+                    (click)="notAttendToEvent();displayDetail=false;"
+                    *ngIf="myParticipationsIDs.includes(event._id!) || isMyEventsSection">Not Participate</button>
+            <button class="btn--clear btn--small" (click)="displayDetail=false">Close</button>
+        </div>
+        
+</p-dialog>
+<!-- Event Detail -->
 
 

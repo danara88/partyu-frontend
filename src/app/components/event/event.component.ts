@@ -28,6 +28,7 @@ export class EventComponent implements OnInit {
   public numberParticipants: number;
   public participants: Participant[];
   public displayModalParticipants: boolean;
+  public displayDetail: boolean;
   public startDate: string;
   public startHour: string;
 
@@ -49,6 +50,7 @@ export class EventComponent implements OnInit {
     this.numberParticipants = 0;
     this.participants = [];
     this.displayModalParticipants = false;
+    this.displayDetail = false;
     this.startDate = '';
     this.startHour = '';
 
@@ -155,6 +157,10 @@ export class EventComponent implements OnInit {
     if(this.participants.length > 0) {
       this.displayModalParticipants = true;
     }
+  }
+
+  showModalDetail() {
+    this.displayDetail = true;
   }
 
 }
