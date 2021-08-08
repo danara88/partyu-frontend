@@ -3,6 +3,8 @@ import { NgxSpinnerService } from "ngx-spinner";
 import { CalendarOptions } from '@fullcalendar/angular';
 import { EventCalendar } from 'src/app/models/eventCalendar.model';
 import { EventsService } from '../../services/events.service';
+import { MessageService } from 'primeng/api';
+import { UtilsService } from '../../services/utils.service';
 
 
 @Component({
@@ -18,6 +20,8 @@ export class CalendarComponent implements OnInit {
 
   constructor(
     private eventService: EventsService,
+    private utilsService: UtilsService,
+    private messageService: MessageService,
     private spinner: NgxSpinnerService,
   ) { 
 
@@ -28,7 +32,13 @@ export class CalendarComponent implements OnInit {
 
   async ngOnInit() {
     this.spinner.show();
-    this.eventsCalendar = await this.getEventsCalendar();
+    try {
+      this.eventsCalendar = await this.getEventsCalendar();
+    } catch(err) {
+      console.log(err);
+      this.spinner.hide();
+      this.utilsService.showToastMessage('calendarToast', 'error', 'Events Calendar', 'Ups ! There was a problem ...', this.messageService);
+    }
     this.calendarConfig(this.eventsCalendar);
   }
 

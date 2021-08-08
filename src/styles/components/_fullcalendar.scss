@@ -27,3 +27,15 @@ td.fc-daygrid-day.fc-day.fc-day-sat.fc-day-today {
 .fc-event-time {
     display: none;
 }
+
+a.fc-daygrid-event.fc-daygrid-block-event.fc-h-event.fc-event.fc-event-start.fc-event-end.fc-event-future {
+    background: $partyu-purple;
+}
+
+.fc-event-main {
+    padding: .4rem;
+}
+
+a.fc-daygrid-event.fc-daygrid-block-event.fc-h-event.fc-event {
+    background: $partyu-purple;
+}
