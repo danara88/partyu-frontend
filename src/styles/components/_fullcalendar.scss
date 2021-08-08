@@ -1,0 +1,29 @@
+button.fc-today-button.fc-button.fc-button-primary {
+    display: none;
+}
+
+button.fc-button.fc-button-primary {
+    @extend .btn;
+    outline: none;
+}
+
+.fc .fc-toolbar .fc-button {
+    background: $partyu-purple;
+    border: 0 !important;
+}
+
+.fc .fc-toolbar .fc-button:focus {
+   box-shadow: 0rem 0rem 0rem $partyu-purple !important;
+}
+
+.fc-event-title-container {
+    background: $partyu-purple;
+}
+
+td.fc-daygrid-day.fc-day.fc-day-sat.fc-day-today {
+    background: rgba($bluish-gray, 0.3);
+}
+
+.fc-event-time {
+    display: none;
+}

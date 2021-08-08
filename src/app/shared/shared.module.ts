@@ -19,6 +19,14 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { CalendarModule } from 'primeng/calendar';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
+
+FullCalendarModule.registerPlugins([ 
+  dayGridPlugin,
+  interactionPlugin
+]);
 
 
 
@@ -41,6 +49,7 @@ import { CalendarModule } from 'primeng/calendar';
     ConfirmDialogModule,
     AutoCompleteModule,
     CalendarModule,
+    FullCalendarModule
   ],
   exports: [
     NgxSpinnerModule,
@@ -56,6 +65,7 @@ import { CalendarModule } from 'primeng/calendar';
     ConfirmDialogModule,
     AutoCompleteModule,
     CalendarModule,
+    FullCalendarModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
