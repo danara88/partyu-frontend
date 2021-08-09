@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Event } from '../models/event.model';
 import { Participant } from '../models/participant';
 import { EventCalendar } from '../models/eventCalendar.model';
+import { Invitation } from '../models/invitation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -42,14 +43,20 @@ export class EventsService {
   }
 
   /**
-   * Gets all the participantions by the user
+   * Get all the public events by the user
    * @returns 
    */
-  getMyEventsParticipation(eventsFormat: boolean = false): Observable<Participant[] | Event[]> {
-    if (eventsFormat) {
-      return this.http.get<Event[]>(`${ this.apiUrl }api/events/my-events-participations?eventsformat=true`);
-    }
-    return this.http.get<Participant[]>(`${ this.apiUrl }api/events/my-events-participations`);
+  getPublicEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(`${ this.apiUrl }api/events/public/list`);
+  }
+
+  /**
+   * Get all accepted and private inviations/events by the user
+   * @param eventsFormat 
+   * @returns 
+   */
+  getPrivateEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(`${ this.apiUrl }api/events/private/list`);
   }
 
   /**

@@ -144,6 +144,7 @@ export class EventComponent implements OnInit {
     this.participantService.listParticipantsByEvent(this.event).subscribe(resp => {
       this.numberParticipants = resp.total;
       this.participants = resp.participants;
+      
     }, error => {
       console.log(error);
       this.utilsService.showToastMessage('homeToast', 'error', 'List Participants', 'Something went wrong', this.messageService);

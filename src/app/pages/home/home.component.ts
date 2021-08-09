@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit {
    */
   getMyParticipationsIDs(): Promise<string[]> {
     return new Promise((resolve, reject) => {
-      this.eventsService.getMyEventsParticipation().subscribe((participations) => {
+      this.participantService.getMyParticipations().subscribe((participations) => {
         let myEventsParticipationIDs: string[] = participations.map((participation: any) => participation.event.toString());
         resolve(myEventsParticipationIDs);
 
