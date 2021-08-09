@@ -12,7 +12,7 @@
                 </i>
             </div>      
            
-            <span class="event__date">{{ event.region?.city }} | {{ startDate }} </span>
+            <span class="event__date" *ngIf="event.region?.city">{{ event.region?.city }} | {{ startDate }} </span>
             <span class="event__date">{{ startHour }}</span>
         </div>
         <div class="event__content-footer d-flex justify-between">
@@ -36,10 +36,13 @@
     </div>
 
     <!-- Dropdown -->
-    <p-overlayPanel #op2 class="p-overlaypanel--event" [dismissable]="true">
+    <p-overlayPanel #op2 class="p-overlaypanel--event" [dismissable]="false">
         <ng-template pTemplate>
             <div class="p-overlaypanel__options">
-                <a class="mb-10 cursor-pointer">Edit Event</a>
+                <app-update-event class="mb-10"
+                                  [event]="event"
+                                  [eventOptionsOverlaypanel]="op2">
+                </app-update-event>
                 <a class="mb-10 cursor-pointer" (click)="showModalDetail()">View Event Detail</a>
                 <a class="mb-10 cursor-pointer text-danger" (click)="confirm(event)">Delete Event</a>
             </div>

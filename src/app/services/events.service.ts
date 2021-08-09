@@ -33,6 +33,15 @@ export class EventsService {
   }
 
   /**
+   * Update an event
+   * @param event 
+   * @returns 
+   */
+  updateEvent(event: Event): Observable<Event> {
+    return this.http.put<Event>(`${ this.apiUrl }api/events/${ event._id }`, event);
+  }
+
+  /**
    * Gets all the participantions by the user
    * @returns 
    */

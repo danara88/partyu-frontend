@@ -1,0 +1,102 @@
+<a class="cursor-pointer" (click)="showModal()">Edit Event</a>
+
+
+<!-- Dialog to create event-->
+<p-dialog class="dialog--small"
+          header="Update Event" 
+          [(visible)]="displayModal" 
+          [modal]="true" 
+          [style]="{width: '45rem'}"
+          [baseZIndex]="10000"
+          appendTo="body"
+          [draggable]="false">
+
+    <form [formGroup]="updateEventForm" (ngSubmit)="onSubmit()">
+
+        <div class="form__group">
+            <div class="form__group--head">
+                <label class="form__label">Title</label>
+            </div>
+            <input type="text" 
+                   class="form__input" 
+                   placeholder="at least 8 characters"
+                   formControlName="title">
+        </div>
+
+        <div class="form__group">
+            <div class="form__group--head">
+                <label class="form__label">Region</label>
+            </div>
+            <p-dropdown class="form_input"
+                        [options]="regions"
+                        placeholder="Select a Region" 
+                        dataKey="_id"
+                        optionLabel="city"
+                        formControlName="region"
+                        [showClear]="false">
+            </p-dropdown>
+        </div>
+
+        <div class="form__group">
+            <div class="form__group--head">
+                <label class="form__label">Start Date</label>
+            </div>
+            <p-calendar formControlName="eventStart" 
+                        dateFormat="dd/mm/yy"
+                        [showTime]="true"
+                        hourFormat="24"></p-calendar>
+        </div>
+
+        <div class="form__group">
+            <div class="form__group--head">
+                <label class="form__label">End Date</label>
+            </div>
+            <p-calendar formControlName="eventEnd" 
+                        dateFormat="dd/mm/yy"
+                        [showTime]="true"
+                        hourFormat="24"></p-calendar>
+        </div>
+
+        <div class="form__group">
+            <div class="form__group--head">
+                <label class="form__label">Description</label>
+            </div>
+            <textarea type="text" 
+                      rows="5"
+                      class="form__input" 
+                      placeholder="add some detail to the event"
+                      formControlName="description">
+            </textarea>
+        </div>
+
+        <div class="form__group">
+           
+            <div class="p-field-checkbox">
+                <p-checkbox inputId="binary" 
+                            class="form__input-checkbox"
+                            [binary]="true"
+                            formControlName="visibility">
+                </p-checkbox>
+                <label for="binary" class="form__input-checkbox-label">Make private this event</label>
+            </div>
+            
+        </div>
+      
+
+        <div class="p-dialog__btns">
+            <button type="button" class="btn--clear btn--small" (click)="displayModal=false; this.eventOptionsOverlaypanel?.hide();">Close</button>
+            <button type="submit" 
+                    class="btn btn--small" 
+                    [disabled]="updateEventForm.invalid">
+                    Update Event
+            </button>
+        </div>
+
+    </form>
+
+</p-dialog>
+<!-- Dialog to create event-->
+
+
+
+

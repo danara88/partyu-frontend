@@ -12,6 +12,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { EventComponent } from './event/event.component';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { UpdateEventComponent } from './update-event/update-event.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { NotificationsComponent } from './notifications/notifications.component'
     EventComponent,
     CreateEventComponent,
     NotificationsComponent,
+    UpdateEventComponent,
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
     ProfileComponent,
     EventComponent,
     CreateEventComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    UpdateEventComponent
   ]
 })
 export class ComponentsModule { }
