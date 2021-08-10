@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Event } from '../models/event.model';
 import { Participant } from '../models/participant';
 import { EventCalendar } from '../models/eventCalendar.model';
+import { Invitation } from '../models/invitation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,14 +34,29 @@ export class EventsService {
   }
 
   /**
-   * Gets all the participantions by the user
+   * Update an event
+   * @param event 
    * @returns 
    */
-  getMyEventsParticipation(eventsFormat: boolean = false): Observable<Participant[] | Event[]> {
-    if (eventsFormat) {
-      return this.http.get<Event[]>(`${ this.apiUrl }api/events/my-events-participations?eventsformat=true`);
-    }
-    return this.http.get<Participant[]>(`${ this.apiUrl }api/events/my-events-participations`);
+  updateEvent(event: Event): Observable<Event> {
+    return this.http.put<Event>(`${ this.apiUrl }api/events/${ event._id }`, event);
+  }
+
+  /**
+   * Get all the public events by the user
+   * @returns 
+   */
+  getPublicEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(`${ this.apiUrl }api/events/public/list`);
+  }
+
+  /**
+   * Get all accepted and private inviations/events by the user
+   * @param eventsFormat 
+   * @returns 
+   */
+  getPrivateEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(`${ this.apiUrl }api/events/private/list`);
   }
 
   /**
@@ -58,6 +74,15 @@ export class EventsService {
    */
   deleteEvent(event: Event): Observable<Event> {
     return this.http.delete<Event>(`${ this.apiUrl }api/events/${ event._id }`);
+  }
+
+  /**
+   * Filter events
+   * @param filter 
+   * @returns 
+   */
+  filterEvents(filter: {region: string, eventStart: string}): Observable<Event[]> {
+    return this.http.post<Event[]>(`${ this.apiUrl }api/events/filter`, filter);
   }
 
 }

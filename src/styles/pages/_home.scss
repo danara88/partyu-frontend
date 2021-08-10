@@ -45,6 +45,25 @@
         color: #858585;
         font-size: $font-size-14 !important;
     }
+    &-detail {
+        &__description {
+            margin: 0rem !important;
+        }
+        &__info {
+            font-size: $font-size-16;
+        }
+        &__dates {
+            .event-detail__subtitle {
+                font-size: $font-size-16;
+            }
+            .event-detail__date {
+                font-size: $font-size-14;
+            }
+            .event-detail__hour {
+                font-size: $font-size-12;
+            }
+        }
+    }
 }
 
 /**
@@ -78,6 +97,17 @@
         font-size: $font-size-14;
     }
     &__participant-fullname {
+        font-size: $font-size-14;
+    }
+}
+
+.filter-message {
+    background-color: $partyu-green;
+    color: $white;
+    font-size: $font-size-14;
+    border-radius: .5rem;
+    padding: .3rem .7rem;
+    .material-icons {
         font-size: $font-size-14;
     }
 }

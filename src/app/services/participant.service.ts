@@ -41,4 +41,12 @@ export class ParticipantService {
     return this.http.get<{total: number, participants: Participant[]}>(`${ this.apiUrl }api/participants/${ event._id }`);
   }
 
+  /**
+   * Get my participations
+   * @returns 
+   */
+  getMyParticipations(): Observable<Participant[]> {
+    return this.http.get<Participant[]>(`${ this.apiUrl }api/participants/my-participations/list`);
+  }
+
 }

@@ -6,14 +6,18 @@
     <div class="p-col">
 
         <div class="page page__container">
-
             <div class="page__header">
-                <span class="page__title">My Events</span>
+                <span class="page__title" *ngIf="eventsVisibility === 1">My Events</span>
+                <span class="page__title" *ngIf="eventsVisibility === 2">My Private Events</span>
             </div>
-
         </div>
 
-        <p class="auth__sentence mt-20">Here you will find all the events that you confirm your participation
+        <p class="auth__sentence mt-20" *ngIf="eventsVisibility === 1">
+            Here you will find all the events that you confirm your participation
+        </p>
+
+        <p class="auth__sentence mt-20" *ngIf="eventsVisibility === 2">
+            Here you will find all the <b class="font-bold">private events</b> where you confirm your participation
         </p>
 
         <div class="events mt-15" *ngIf="!loader">
@@ -65,12 +69,29 @@
         
     </div>
     <!-- Events -->
-  
-    <!-- Notifications -->
-    <!-- <div class="p-col-fixed" style="width: 31.176rem;">
-        <app-notifications></app-notifications>
-    </div> -->
-    <!-- Notifications -->
+
+     <!-- Filters -->
+     <div class="p-col-fixed" style="width: 31.176rem;">
+        <div class="white-box mt-22">
+            <span class="notifcations__title">Display Events</span>
+            <form>
+                <div class="form__group mt-15">
+                    <div class="form__group--head">
+                        <label class="form__label">Filter by visibility</label>
+                    </div>
+                    <p-dropdown class="form_input"
+                                [options]="optionsDropDown"
+                                placeholder="Select a the visibility" 
+                                dataKey="code"
+                                (onChange)="handlerVisibility($event)"
+                                optionLabel="label"
+                                [showClear]="false">
+                    </p-dropdown>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Filters -->
 
 </div>
 
