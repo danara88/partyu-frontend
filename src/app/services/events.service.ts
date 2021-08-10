@@ -76,4 +76,13 @@ export class EventsService {
     return this.http.delete<Event>(`${ this.apiUrl }api/events/${ event._id }`);
   }
 
+  /**
+   * Filter events
+   * @param filter 
+   * @returns 
+   */
+  filterEvents(filter: {region: string, eventStart: string}): Observable<Event[]> {
+    return this.http.post<Event[]>(`${ this.apiUrl }api/events/filter`, filter);
+  }
+
 }

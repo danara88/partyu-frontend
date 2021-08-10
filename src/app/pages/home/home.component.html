@@ -54,34 +54,46 @@
     <!-- Filters -->
     <div class="p-col-fixed" style="width: 31.176rem;">
         <div class="white-box mt-22">
-            <span class="notifcations__title">Filter Events</span>
-            <form>
+            <div class="d-flex justify-between items-center">
+                <span class="notifcations__title">Filter Events</span>
+                <span class="filter-message d-flex justify-between items-center cursor-pointer" *ngIf="activeFilter" (click)="clearFilter()">
+                    <span class="material-icons mr-5">
+                        filter_alt
+                    </span>
+                    Active Filter
+                </span>
+            </div>
+          
+            <form [formGroup]="filterEventsForm" (ngSubmit)="filter()">
+                <div class="form__group mt-15">
+                    <div class="form__group--head">
+                        <label class="form__label">Filter by start date</label>
+                    </div>
+                    <p-calendar formControlName="eventStart" 
+                                dateFormat="dd/mm/yy"
+                                [showTime]="true"
+                                formControlName="eventStart"
+                                placeholder="Select a date"
+                                hourFormat="24"></p-calendar>
+                </div>
                 <div class="form__group mt-15">
                     <div class="form__group--head">
                         <label class="form__label">Filter by region</label>
                     </div>
                     <p-dropdown class="form_input"
                                 placeholder="Select a Region" 
+                                [options]="regions"
                                 dataKey="_id"
+                                formControlName="region"
                                 optionLabel="city"
                                 formControlName="region"
                                 [showClear]="false">
                     </p-dropdown>
                 </div>
-                <div class="form__group mt-15">
-                    <div class="form__group--head">
-                        <label class="form__label">Filter by number of participants</label>
-                    </div>
-                    <p-dropdown class="form_input"
-                                placeholder="Select a Region" 
-                                dataKey="_id"
-                                optionLabel="city"
-                                formControlName="region"
-                                [showClear]="false">
-                    </p-dropdown>
-                </div>
+               
                 <div class="d-flex justify-end">
-                    <button type="submit" class="btn btn--small">Apply</button>
+                    <button class="btn--clear btn--small mr-10" (click)="clearFilter()" [disabled]="!activeFilter">Clear</button>
+                    <button type="submit" class="btn btn--small">Apply Filter</button>
                 </div>
             </form>
         </div>

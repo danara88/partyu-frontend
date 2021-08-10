@@ -100,3 +100,14 @@
         font-size: $font-size-14;
     }
 }
+
+.filter-message {
+    background-color: $partyu-green;
+    color: $white;
+    font-size: $font-size-14;
+    border-radius: .5rem;
+    padding: .3rem .7rem;
+    .material-icons {
+        font-size: $font-size-14;
+    }
+}

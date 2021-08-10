@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { MyEventsComponent } from './my-events/my-events.component';
 import { NotificationsPageComponent } from './notifications-page/notifications-page.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -25,7 +26,8 @@ import { CalendarComponent } from './calendar/calendar.component';
     CommonModule,
     PagesRoutingModule,
     SharedModule,
-    ComponentsModule
+    ComponentsModule,
+    ReactiveFormsModule,
   ]
 })
 export class PagesModule { }
