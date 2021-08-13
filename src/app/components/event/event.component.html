@@ -15,7 +15,7 @@
             <span class="event__date" *ngIf="event.region?.city">{{ event.region?.city }} | {{ startDate }} </span>
             <span class="event__date">{{ startHour }}</span>
         </div>
-        <div class="event__content-footer d-flex justify-between">
+        <div class="event__content-footer d-flex justify-between" *ngIf="!isEventSearch">
             <span class="event__people d-flex items-center cursor-pointer" (click)="showModalParticipants()">
                 <i class="pi pi-users"></i>
                 {{ numberParticipants }}

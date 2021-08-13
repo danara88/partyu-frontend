@@ -8,11 +8,14 @@
         <div class="form__group form__group--search-bar">
             <input type="text" 
                    class="form__input" 
-                   placeholder="Looking for something?">
-            <i class="pi pi-search cursor-pointer"></i>
+                   placeholder="Looking for something?" #term (keyup)="searchEvent(term.value)">
+            <i class="pi pi-search cursor-pointer" (click)="searchEvent(term.value)" *ngIf="!searchedEvents.length"></i>
+            <i class="pi pi-times cursor-pointer" (click)="clearSearch(term)"  *ngIf="searchedEvents.length"></i>
         </div>
+
     </div>
     <!-- Searching Bar -->
+
 
     <div class="header__right">
         <div class="header__user-info cursor-pointer" (click)="op.toggle($event)">
@@ -73,7 +76,25 @@
 </p-dialog>
 <!-- Dialog for log out confirmation -->
 
+<!-- Searches -->
+<div class="searches white-box d-flex flex-column" *ngIf="searchedEvents.length">
+    <div class="events d-flex flex-column">
+        <span class="mt-10">Results: {{searchedEvents.length}}</span>
 
+        <!-- Event Card -->
+        <app-event *ngFor="let event of searchedEvents"
+                    [user]="user" 
+                    [events]="searchedEvents" 
+                    [event]="event"
+                    [showAdminOptions]="false"
+                    [myParticipationsIDs]="[]"
+                    [isEventSearch]="true">
+        </app-event>
+        <!-- Event Card -->
+
+    </div>
+</div>
+<!-- Searches -->
 
 
 <p-toast key="headerToastMessage"></p-toast>

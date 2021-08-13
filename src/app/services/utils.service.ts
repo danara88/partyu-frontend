@@ -1,5 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { UserProfile } from '../models/userProfile.model';
 import { UserService } from './user.service';
 
@@ -8,7 +12,9 @@ import { UserService } from './user.service';
 })
 export class UtilsService {
 
-  constructor() { }
+  public apiUrl: string = environment.apiUrl;
+
+  constructor(private http: HttpClient) { }
 
   /**
    * It gets the first leter for profile image
@@ -78,6 +84,20 @@ export class UtilsService {
     const time = new Intl.DateTimeFormat('en-US', { hour12: false, hour: 'numeric', minute: 'numeric' }).format(dateFormatted);
 
     return time;
+  }
+
+  /**
+   * Search data
+   * @param collection 
+   * @param term 
+   */
+  searchData(collection: string, term: string): Observable<any[]> {
+    return this.http.get<{results: any[]}>(`${ this.apiUrl }api/search/${ collection }/${ term }`)
+              .pipe(
+                map((res) => {
+                  return res.results
+                })
+              );
   }
 
 }
