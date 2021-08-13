@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { UserProfile } from '../models/userProfile.model';
 
@@ -18,6 +19,21 @@ export class AuthService {
   public identity: UserProfile | null = new UserProfile('','');
 
   constructor(private http: HttpClient) { }
+  
+  /**
+   * Validate the token and renew
+   * @returns 
+   */
+  validateToken(): Observable<boolean> {
+    return this.http.get<{ok: boolean, token: string}>(`${ this.apiUrl }api/auth/renew`)
+                .pipe(
+                  tap((resp) => {
+                    localStorage.setItem('access_token', resp.token);
+                  }),
+                  map(resp => true),
+                  catchError(error => of(false))
+                );
+  }
 
   /**
    * Get user identity

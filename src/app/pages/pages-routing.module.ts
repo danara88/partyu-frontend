@@ -6,6 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { MyEventsComponent } from './my-events/my-events.component';
 import { NotificationsPageComponent } from './notifications-page/notifications-page.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { AuthGuard } from '../guards/auth.guard';
+
 
 const routes: Routes = [
     {
@@ -14,23 +16,28 @@ const routes: Routes = [
         children: [
             {
                 path: '',
-                component: HomeComponent
+                component: HomeComponent,
+                canActivate: [ AuthGuard ]
             },
             {
                 path: 'home',
-                component: HomeComponent
+                component: HomeComponent,
+                canActivate: [ AuthGuard ]
             },
             {
                 path: 'my-events',
-                component: MyEventsComponent
+                component: MyEventsComponent,
+                canActivate: [ AuthGuard ]
             },
             {
                 path: 'notifications',
-                component: NotificationsPageComponent
+                component: NotificationsPageComponent,
+                canActivate: [ AuthGuard ]
             },
             {
                 path: 'calendar',
-                component: CalendarComponent
+                component: CalendarComponent,
+                canActivate: [ AuthGuard ]
             }
         ]
     }
