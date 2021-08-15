@@ -24,7 +24,8 @@ export class EventComponent implements OnInit {
   @Input() public showAdminOptions: boolean;
   @Input() public isMyEventsSection: boolean;
   @Input() public isEventSearch: boolean;
-  @Output() public reloadEvents: EventEmitter<boolean> = new EventEmitter();
+  @Input() public isPrivateEvents: boolean;
+  @Output() public reloadEvents: EventEmitter<{reload: boolean, isPrivateEvents: boolean}> = new EventEmitter();
 
   public numberParticipants: number;
   public participants: Participant[];
@@ -45,6 +46,7 @@ export class EventComponent implements OnInit {
     this.events = [];
     this.event = {};
     this.isEventSearch = false;
+    this.isPrivateEvents = false;
     this.user = new UserProfile('', '');
     this.myParticipationsIDs = [];
     this.showAdminOptions = true;
@@ -93,7 +95,7 @@ export class EventComponent implements OnInit {
       this.utilsService.showToastMessage('homeToast', 'success', 'Not Attend to event', `Your participation was removed`, this.messageService);
       this.myParticipationsIDs.splice(this.myParticipationsIDs.indexOf(this.event._id!), 1);
       if (this.isMyEventsSection) {
-        this.reloadEvents.emit(true);
+        this.reloadEvents.emit({reload: true, isPrivateEvents: this.isPrivateEvents});
       }
       this.spinner.hide();
 

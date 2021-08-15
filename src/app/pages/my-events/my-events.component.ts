@@ -20,6 +20,7 @@ export class MyEventsComponent implements OnInit {
   public user: UserProfile;
   public eventsVisibility: number;
   public optionsDropDown: object[];
+  public isPrivateEvents: boolean;
 
   constructor(
     private messageService: MessageService,
@@ -35,6 +36,7 @@ export class MyEventsComponent implements OnInit {
     this.user = this.authService.getIdentity()!;
     this.eventsVisibility = 1; // 1 -> Public Events, 2 -> private Events
     this.optionsDropDown = [{code: 1, label: 'My public events'}, {code: 2, label: 'My private events'}];
+    this.isPrivateEvents = false;
 
   }
 
@@ -51,6 +53,7 @@ export class MyEventsComponent implements OnInit {
    */
   getMyPublicEvents() {
     this.spinner.show();
+    this.isPrivateEvents = false;
     this.eventsService.getPublicEvents().subscribe(events => {
       this.events = events;
       this.loader = false;
@@ -70,6 +73,7 @@ export class MyEventsComponent implements OnInit {
    */
   getMyPrivateEvents() {
     this.spinner.show();
+    this.isPrivateEvents = true;
     this.eventsService.getPrivateEvents().subscribe(events => {
       this.events = events;
       this.loader = false;
@@ -87,8 +91,9 @@ export class MyEventsComponent implements OnInit {
    * Reload again all the public events
    * @param event 
    */
-  reloadEvents(event: boolean) {
-    if (event) this.getMyPublicEvents();
+  reloadEvents(resp: {reload: boolean, isPrivateEvents: boolean}) {
+    if (resp.reload && !resp.isPrivateEvents) this.getMyPublicEvents();
+    if (resp.reload && resp.isPrivateEvents) this.getMyPrivateEvents();
   }
 
   /**
