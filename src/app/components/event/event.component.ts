@@ -90,7 +90,6 @@ export class EventComponent implements OnInit {
   notAttendToEvent() {
     this.spinner.show();
     this.participantService.notAttendToEvent(this.event._id!).subscribe(participant => {
-      console.log(participant);
       this.utilsService.showToastMessage('homeToast', 'success', 'Not Attend to event', `Your participation was removed`, this.messageService);
       this.myParticipationsIDs.splice(this.myParticipationsIDs.indexOf(this.event._id!), 1);
       if (this.isMyEventsSection) {

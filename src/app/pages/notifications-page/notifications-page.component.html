@@ -26,6 +26,9 @@
             </div>
 
             <div class="page__content white-box">
+                <span *ngIf="notificationsSection === 1">Actual Notifications</span>
+                <span *ngIf="notificationsSection === 2">All Notifications</span>
+
                 <!-- Actual Notifications -->
                 <app-notifications [title]="false" [biggerNotifications]="true" [limit]="10" *ngIf="notificationsSection === 1"></app-notifications>
                 <!-- Actual Notifications -->
