@@ -28,8 +28,8 @@ export class ParticipantService {
    * @param event 
    * @returns 
    */
-  notAttendToEvent(event: string): Observable<Participant> {
-    return this.http.post<Participant>(`${ this.apiUrl }api/participants/not-attend`, {event});
+  notAttendToEvent(eventId: string): Observable<Participant> {
+    return this.http.post<Participant>(`${ this.apiUrl }api/participants/not-attend`, {event: eventId});
   }
 
   /**
