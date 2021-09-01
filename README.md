@@ -1,27 +1,8 @@
-# Client
+## What is this web app about :question:
+This is a wonderful web app were you can participate on different events. Here you can register and visualize your events in a very nice **calendar** implemented to organize the dates of your parties/events/etc.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.1.
+## What technologies did I use :question:
+Well, **PartyU** was developed in "Angular" "TypeScript" "HTML5" "CSS3" and "SASS". The back-end was developed in NodeJS with Express framework for the API architecture.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## What I learn in this project :question:
+There were many functionalities related with dates. The most difficult part was the implementetion of the **calendar** where I had to display all the user's events in the correct order.
